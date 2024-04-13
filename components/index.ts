@@ -1,0 +1,3 @@
+export { default as Header } from './Header';
+export { default as BookPage } from './BookPage';
+export { default as MyPage } from './MyPage';

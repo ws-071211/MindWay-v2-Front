@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Logo } from '../../asset/svg';
+import { HeaderLogo } from '../../asset/svg';
 import * as S from './style';
 import { useRouter } from 'next/router';
 import { usePathname } from 'next/navigation';
@@ -35,7 +35,7 @@ const Header = () => {
   return (
     <S.HeaderContainer>
       <S.LogoContainer onClick={() => router.push('/')}>
-        <Logo />
+        <HeaderLogo />
       </S.LogoContainer>
       <S.TextContainer>
         {['메인', '도서', '마이'].map((item, index) => (

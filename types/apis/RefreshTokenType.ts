@@ -1,3 +1,3 @@
 export interface RefreshTokenType{
-  RefreshToken: string | null
+  refreshToken: string | null
 }

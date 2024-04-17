@@ -1,6 +1,6 @@
-export interface TokensType {
-  accessToken: string | null
-  refreshToken: string | null
-  accessExp: string | null
-  refreshExp: string | null
+export interface TokenType {
+  accessToken: string
+  refreshToken: string
+  accessTokenExpiresIn: string
+  refreshTokenExpiresIn: string
 }

@@ -2,7 +2,7 @@ import axios, { InternalAxiosRequestConfig, AxiosResponse } from 'axios';
 import TokenManager from './TokenManager';
 
 const instance = axios.create({
-  baseURL: process.env.NEXT_APP_CLIENT_API,
+  baseURL: process.env.NEXT_PUBLIC_SERVER_URL,
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',

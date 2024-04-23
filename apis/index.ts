@@ -1,2 +1,2 @@
-export * from './TokenManager';
-export * from './instance';
+export { default as TokenManager } from './TokenManager';
+export { default as instance } from './instance';

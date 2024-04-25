@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
-import { LoginLogo, GAuthLogo, GAuthText } from '../../asset';
+import { LoginLogo, GAuthLogo, GAuthText } from '@/asset';
 import * as S from './style';
 import { useEffect } from 'react';
-import { TokenManager, instance } from '../../apis';
+import { TokenManager, instance } from '@/apis';
 
 const LoginPage = () => {
   const GAuthUri = `https://gauth.co.kr/login?client_id=${process.env.NEXT_PUBLIC_GAUTH_CLIENTID_KEY}&redirect_uri=${process.env.NEXT_PUBLIC_GAUTH_REDIRECT_URI}`;

@@ -1,11 +1,5 @@
-import Header from '../Header';
-
 const MyPage = () => {
-  return (
-    <>
-      <Header />
-    </>
-  );
+  return <></>;
 };
 
 export default MyPage;

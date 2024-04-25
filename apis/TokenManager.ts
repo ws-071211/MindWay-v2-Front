@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { RefreshTokenType, TokenType } from '../types';
+import { RefreshTokenType, TokenType } from '@/types';
 import Router from 'next/router';
 
 class TokenManager {

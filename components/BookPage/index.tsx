@@ -1,10 +1,6 @@
-import Header from '../Header';
-
 const BookPage = () => {
   return (
-    <>
-      <Header />
-    </>
+    <></>
   );
 };
 

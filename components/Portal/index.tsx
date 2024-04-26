@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom';
-import { PortalProps } from '../../types';
+import { PortalProps } from '@/types';
 import { MouseEvent, useState, cloneElement, useEffect } from 'react';
 import * as S from './style';
 

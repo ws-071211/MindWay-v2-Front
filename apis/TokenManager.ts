@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { RefreshTokenType, TokenType } from '../types';
+import { RefreshTokenType, TokenType } from '@/types';
 import Router from 'next/router';
 
 class TokenManager {
@@ -56,6 +56,7 @@ class TokenManager {
     localStorage.removeItem('refreshToken');
     localStorage.removeItem('accessTokenExpiresIn');
     localStorage.removeItem('refreshTokenExpiresIn');
+    
     Router.push('/');
   }
 
@@ -65,7 +66,7 @@ class TokenManager {
         '/api/v2/auth',
         {},
         {
-          baseURL: `${process.env.REACT_APP_CLIENT_API}`,
+          baseURL: process.env.NEXT_PUBLIC_SERVER_URL,
           withCredentials: true,
           headers: {
             RefreshToken:

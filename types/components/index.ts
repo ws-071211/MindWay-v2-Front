@@ -1,1 +1,2 @@
-export * from './PortalProps'
+export * from './PortalProps';
+export * from './ModalPropsType';

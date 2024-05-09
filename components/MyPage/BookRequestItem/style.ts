@@ -1,21 +1,24 @@
 import styled from '@emotion/styled';
 
 export const BookRequestItem = styled.div`
-  padding: 24px 32px;
-  max-width: 25vw;
-  width: 100%;
-  border-radius: 8px;
-  box-shadow: 0px 0px 20px 0px ${({theme})=>theme.color.Shadow.card};
+  padding: 1.5rem 2rem;
+  min-width: 27.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0rem 0rem 1.25rem 0rem ${({theme})=>theme.color.Shadow.card};
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
+  @media (max-width: 57rem) {
+    width: 100%;
+    min-width: 25rem;
+  }
 `;
 
 export const BookTextContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 0.25rem;
 `
 
 export const TitleText = styled.div`
@@ -30,7 +33,7 @@ export const AuthorText = styled.div`
 
 export const ToolBox = styled.div`
   display: flex;
-  gap: 32px;
+  gap: 2rem;
 `
 
 export const ToolButton = styled.div`

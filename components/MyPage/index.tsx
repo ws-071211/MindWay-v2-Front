@@ -1,8 +1,10 @@
 import { MeatBallIcon } from '@/asset';
 import BookRequestItem from './BookRequestItem';
 import * as S from './style';
+import { useState } from 'react';
 
-const MyPage = () => {
+const BookPage = () => {
+  const [toggleModal, setToggleModal] = useState(false);
   return (
     <>
       <S.Wrapper>
@@ -14,44 +16,21 @@ const MyPage = () => {
             </S.UserNameText>
           </S.WelcomeContainer>
           <S.MeatBallIconContainer>
-            <MeatBallIcon />
+            <S.MeatBallIcon onClick={() => setToggleModal(!toggleModal)}>
+              <MeatBallIcon />
+            </S.MeatBallIcon>
+            {toggleModal && (
+              <S.ModalWrapper>
+                <S.ModalText>MINDWAY 소개</S.ModalText>
+                <S.ModalContour/>
+                <S.LogoutText>로그아웃</S.LogoutText>
+              </S.ModalWrapper>
+            )}
           </S.MeatBallIconContainer>
         </S.ProfileContainer>
         <S.ApplicantContainer>
           도서 신청 목록
           <S.BookRequestList>
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
             <BookRequestItem />
             <BookRequestItem />
             <BookRequestItem />
@@ -63,4 +42,4 @@ const MyPage = () => {
   );
 };
 
-export default MyPage;
+export default BookPage;

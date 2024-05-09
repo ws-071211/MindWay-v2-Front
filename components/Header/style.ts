@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 export const HeaderContainer = styled.div`
+  padding: 1.75rem 0 0 0;
   width: 100%;
   height: 120px;
   display: flex;
@@ -10,16 +11,16 @@ export const HeaderContainer = styled.div`
 `;
 
 export const LogoContainer = styled.div`
-  width: 200px;
-  height: 80px;
+  width: 12.5rem;
+  height: 5rem;
   cursor: pointer;
 `;
 
 export const TextContainer = styled.div`
-  margin-bottom: 16px;
+  margin-bottom: 1.12rem;
   display: flex;
-  gap: 40px;
-  border-bottom: 2px solid ${({ theme }) => theme.color.Gray.gray200};
+  gap: 2.5rem;
+  border-bottom: 0.125rem solid ${({ theme }) => theme.color.Gray.gray200};
   display: flex;
   align-items: end;
 `;
@@ -28,19 +29,22 @@ export const SelectionText = styled.div<{ selection: boolean }>`
   ${({ theme }) => theme.typography.m1.semibold};
   color: ${({ selection, theme }) =>
     selection ? theme.color.BLACK : theme.color.Gray.gray600};
-  border-bottom: 2px solid
+  border-bottom: 0.125rem solid
     ${({ selection, theme }) =>
       selection ? theme.color.MAIN : theme.color.Gray.gray200};
-  margin-bottom: -2px;
-  width: 88px;
-  height: 46px;
+  margin-bottom: -0.125rem;
+  width: 5.5rem;
+  height: 2.875rem;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  @media (max-width: max) {
+    
+  }
 `;
 
 export const EmptyContainer = styled.div`
-  width: 200px;
-  height: 80px;
+  width: 12.5rem;
+  height: 5rem;
 `;

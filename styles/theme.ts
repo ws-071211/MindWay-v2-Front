@@ -1,4 +1,4 @@
-import '@emotion/react'
+import '@emotion/react';
 
 const color = {
   MAIN: '#7EAF72',
@@ -21,8 +21,7 @@ const color = {
     gray200: '#EFF0F2',
     gray100: '#F5F5F8',
   },
-} as const
-
+} as const;
 
 const typography = {
   h1: {
@@ -119,16 +118,16 @@ const typography = {
       fontSize: '14px',
       lineHeight: '150%',
       fontWeight: '400',
-    }
-  }
-} as const
+    },
+  },
+} as const;
 
 export const theme = {
   color,
   typography,
-}
+};
 
-type ExtendedTheme = typeof theme
+type ExtendedTheme = typeof theme;
 
 declare module '@emotion/react' {
   interface Theme extends ExtendedTheme {}

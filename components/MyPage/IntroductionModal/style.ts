@@ -62,7 +62,12 @@ export const Introductionbody = styled.div`
   p {
     position: absolute;
     z-index: 100;
-    ${({ theme }) => theme.typography.m3.regular}
+    font-family: Pretendard;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 200%;
+    letter-spacing: -0.02rem;
     text-align: center;
   }
 `;

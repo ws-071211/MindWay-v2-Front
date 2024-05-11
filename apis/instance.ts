@@ -4,9 +4,6 @@ import TokenManager from './TokenManager';
 const instance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_SERVER_URL,
   withCredentials: true,
-  headers: {
-    'Content-Type': 'application/json',
-  },
 });
 
 instance.interceptors.request.use(

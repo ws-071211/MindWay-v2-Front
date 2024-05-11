@@ -1,0 +1,1 @@
+export { default as BackgroundBook} from './BackgroundBook.png'

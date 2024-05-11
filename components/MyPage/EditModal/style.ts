@@ -27,6 +27,7 @@ export const HeaderContainer = styled.div`
 `;
 
 export const XmarkContainer = styled.div`
+  margin: auto 0;
   width: 1.5rem;
   height: 1.5rem;
   cursor: pointer;

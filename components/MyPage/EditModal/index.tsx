@@ -11,7 +11,7 @@ const DeleteModal = ({ onClose }: ModalPropsType) => {
   const [authorError, setAuthorError] = useState<boolean>(false);
   const [linkError, setLinkError] = useState<boolean>(false);
   const { register, handleSubmit } = useForm();
-  const onSubmit = async (data) => {
+  const onSubmit = async (data:any) => {
     data.title === '' ? setTitleError(true) : setTitleError(false);
     data.author === '' ? setAuthorError(true) : setAuthorError(false);
     data.yes24Link === '' ? setLinkError(true) : setLinkError(false);

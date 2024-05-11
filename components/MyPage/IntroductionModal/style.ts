@@ -52,6 +52,7 @@ export const IntroductionTextContainer = styled.div`
 `;
 
 export const Introductionbody = styled.div`
+  padding: 1.25rem 1.625rem;
   width: 100%;
   position: relative;
   display: flex;

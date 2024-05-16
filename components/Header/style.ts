@@ -39,9 +39,6 @@ export const SelectionText = styled.div<{ selection: boolean }>`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  @media (max-width: max) {
-    
-  }
 `;
 
 export const EmptyContainer = styled.div`

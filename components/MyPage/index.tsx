@@ -1,8 +1,12 @@
 import { MeatBallIcon } from '@/asset';
 import BookRequestItem from './BookRequestItem';
 import * as S from './style';
+import { useState } from 'react';
+import IntroductionModal from './IntroductionModal';
 
-const MyPage = () => {
+const BookPage = () => {
+  const [toggleModal, setToggleModal] = useState(false);
+  const [toggleIntro, setToggleIntro] = useState(false);
   return (
     <>
       <S.Wrapper>
@@ -14,7 +18,18 @@ const MyPage = () => {
             </S.UserNameText>
           </S.WelcomeContainer>
           <S.MeatBallIconContainer>
-            <MeatBallIcon />
+            <S.MeatBallIcon onClick={() => setToggleModal(!toggleModal)}>
+              <MeatBallIcon />
+            </S.MeatBallIcon>
+            {toggleModal && (
+              <S.ModalWrapper>
+                <S.ModalText onClick={() => setToggleIntro(true)}>
+                  MINDWAY 소개
+                </S.ModalText>
+                <S.ModalContour />
+                <S.LogoutText>로그아웃</S.LogoutText>
+              </S.ModalWrapper>
+            )}
           </S.MeatBallIconContainer>
         </S.ProfileContainer>
         <S.ApplicantContainer>
@@ -24,43 +39,12 @@ const MyPage = () => {
             <BookRequestItem />
             <BookRequestItem />
             <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
           </S.BookRequestList>
         </S.ApplicantContainer>
       </S.Wrapper>
+      {toggleIntro && <IntroductionModal onClose={()=>setToggleIntro(false)}/>}
     </>
   );
 };
 
-export default MyPage;
+export default BookPage;

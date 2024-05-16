@@ -1,16 +1,13 @@
-import axios, { InternalAxiosRequestConfig, AxiosResponse } from 'axios';
+import axios from 'axios';
 import TokenManager from './TokenManager';
 
 const instance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_SERVER_URL,
   withCredentials: true,
-  headers: {
-    'Content-Type': 'application/json',
-  },
 });
 
 instance.interceptors.request.use(
-  async (config: InternalAxiosRequestConfig) => {
+  async (config) => {
     const tokenManager = new TokenManager();
     const vaildAccessToken = tokenManager.validateToken(
       tokenManager.accessTokenExpiresIn,
@@ -36,7 +33,7 @@ instance.interceptors.request.use(
 );
 
 instance.interceptors.response.use(
-  (res: AxiosResponse) => {
+  (res) => {
     return res;
   },
   async (error) => {

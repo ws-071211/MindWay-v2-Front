@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const HeaderContainer = styled.div`
-  padding: 1.75rem 0 0 0;
+  padding-top: 1.75rem;
   width: 100%;
   height: 120px;
   display: flex;

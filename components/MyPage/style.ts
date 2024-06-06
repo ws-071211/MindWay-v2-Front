@@ -94,6 +94,7 @@ export const ModalText = styled.div`
   ${({ theme }) => theme.typography.m3.regular}
   color: ${({ theme }) => theme.color.BLACK};
   text-align: center;
+  cursor: pointer;
 `;
 
 export const ModalContour = styled.div`

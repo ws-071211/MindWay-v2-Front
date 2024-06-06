@@ -12,7 +12,7 @@ class TokenManager {
     this.initToken();
   }
 
-  validateToken(expiredString: string | null, token: string | null) {
+  validateToken(expiredString: string | null, token: string | null):boolean {
     if (!expiredString || !token) return false;
 
     return this.calculateMinutes(expiredString, 1) >= new Date();
@@ -29,8 +29,8 @@ class TokenManager {
     if (typeof window === 'undefined') return;
     this._accessToken = localStorage.getItem('accessToken');
     this._refreshToken = localStorage.getItem('refreshToken');
-    this._accessTokenExpiresIn = localStorage.getItem('accessTokenExpiresIn');
-    this._refreshTokenExpiresIn = localStorage.getItem('refreshTokenExpiresIn');
+    this._accessTokenExpiresIn = localStorage.getItem('accessTokeExpiredIn');
+    this._refreshTokenExpiresIn = localStorage.getItem('refreshTokenExpiredIn');
   }
 
   setToken(token: TokenType) {
@@ -54,8 +54,8 @@ class TokenManager {
 
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
-    localStorage.removeItem('accessTokenExpiresIn');
-    localStorage.removeItem('refreshTokenExpiresIn');
+    localStorage.removeItem('accessTokeExpiredIn');
+    localStorage.removeItem('refreshTokenExpiredIn');
     
     Router.push('/');
   }
@@ -63,7 +63,7 @@ class TokenManager {
   async reissueToken({ refreshToken }: RefreshTokenType) {
     try {
       const { data } = await axios.patch(
-        '/api/v2/auth',
+        '/auth',
         {},
         {
           baseURL: process.env.NEXT_PUBLIC_SERVER_URL,

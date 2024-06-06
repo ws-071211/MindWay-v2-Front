@@ -4,21 +4,18 @@ import * as S from './style';
 import Xmark from '@/asset/svg/Xmark';
 import Input from '@/components/common/Input';
 import { useForm } from 'react-hook-form';
-import { useState } from 'react';
+import { BookInfoType } from '@/types/components/BookInfoType';
 
-const DeleteModal = ({ onClose }: ModalPropsType) => {
-  const [titleError, setTitleError] = useState<boolean>(false);
-  const [authorError, setAuthorError] = useState<boolean>(false);
-  const [linkError, setLinkError] = useState<boolean>(false);
-  const { register, handleSubmit } = useForm();
-  const onSubmit = async (data:any) => {
-    data.title === '' ? setTitleError(true) : setTitleError(false);
-    data.author === '' ? setAuthorError(true) : setAuthorError(false);
-    data.yes24Link === '' ? setLinkError(true) : setLinkError(false);
-  };
+const DeleteModal = ({ onClose, onSubmit }: ModalPropsType) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<BookInfoType>();
+  
   return (
     <Portal onClose={onClose}>
-      <S.Wrapper onSubmit={handleSubmit(onSubmit)}>
+      <S.Wrapper onSubmit={onSubmit}>
         <S.ContentContainer>
           <S.HeaderContainer>
             <S.TitleText>도서 수정</S.TitleText>
@@ -30,28 +27,28 @@ const DeleteModal = ({ onClose }: ModalPropsType) => {
             <Input
               label='제목'
               placeholder='책 제목을 입력해주세요.'
-              error={titleError}
+              error={!!errors.title}
               errorMessage='책 제목을 입력해주세요'
               register={register('title', {
-                required: false,
+                required: true,
               })}
             />
             <Input
               label='저자'
               placeholder='저자를 입력해주세요.'
-              error={authorError}
+              error={!!errors.author}
               errorMessage='저자를 입력해주세요'
               register={register('author', {
-                required: false,
+                required: true,
               })}
             />
             <Input
               label='링크'
               placeholder='YES24 링크를 입력해주세요.'
-              error={linkError}
+              error={!!errors.yes24Link}
               errorMessage='YES24링크를 입력해주세요'
               register={register('yes24Link', {
-                required: false,
+                required: true,
                 pattern: /https?:\/\/.*/,
               })}
             />

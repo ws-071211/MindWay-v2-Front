@@ -1,20 +1,22 @@
 import { DeleteButtonIcon, EditButtonIcon } from '@/asset';
 import * as S from './style';
 import { useState } from 'react';
-import DeleteModal from '../DeleteModal';
-import EditModal from '../EditModal';
+import DeleteModal from '../../MyPage/DeleteModal';
+import EditModal from '../../MyPage/EditModal';
+import { BookInfoType } from '@/types';
 
-const BookRequestItem = () => {
+const BookRequestItem = (i:BookInfoType) => {
   const [isShow, setIsShow] = useState<string>('none');
 
   return (
     <>
       <S.BookRequestItem>
         <S.BookTextContainer>
-          <S.TitleText>세상의 마지막 기차역</S.TitleText>
-          <S.AuthorText>무라세 타케시</S.AuthorText>
+          <S.TitleText>{i.title}</S.TitleText>
+          <S.AuthorText>{i.author}</S.AuthorText>
         </S.BookTextContainer>
         <S.ToolBox>
+          
           <S.ToolButton onClick={() => setIsShow('edit')}>
             <EditButtonIcon />
           </S.ToolButton>
@@ -23,7 +25,7 @@ const BookRequestItem = () => {
           </S.ToolButton>
         </S.ToolBox>
       </S.BookRequestItem>
-      {isShow === 'edit' && <EditModal onClose={() => setIsShow('')} />}
+      {isShow === 'edit' && <EditModal onClose={() => setIsShow('')}/>}
       {isShow === 'delete' && <DeleteModal onClose={() => setIsShow('')}/>}
     </>
   );

@@ -5,17 +5,47 @@ import Xmark from '@/asset/svg/Xmark';
 import Input from '@/components/common/Input';
 import { useForm } from 'react-hook-form';
 import { BookInfoType } from '@/types/components/BookInfoType';
+import { instance } from '@/apis';
+import { toast } from 'react-toastify';
+import toastOption from '@/lib/toastOption';
+import { ErrorIcon, SuccessIcon } from '@/asset';
 
-const DeleteModal = ({ onClose, onSubmit }: ModalPropsType) => {
+const EditModal = ({ item, onClose }: ModalPropsType) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<BookInfoType>();
-  
+  } = useForm<BookInfoType>({
+    defaultValues: {
+      title: item.title,
+      author: item.author,
+      yes24Link: item.yes24Link,
+    },
+  });
+
+  const EditBook = async (data: BookInfoType) => {
+    try {
+      await instance.patch(`/order/${item.id}`, {
+        title: data.title,
+        author: data.author,
+        book_url: data.yes24Link,
+      });
+      toast.success('도서 수정이 성공했어요!', {
+        ...toastOption,
+        icon: <SuccessIcon />,
+      });
+    } catch (error) {
+      console.log(error);
+      toast.error('도서 수정에 실패했어요!', {
+        ...toastOption,
+        icon: <ErrorIcon />,
+      });
+    }
+  };
+
   return (
     <Portal onClose={onClose}>
-      <S.Wrapper onSubmit={onSubmit}>
+      <S.Wrapper onSubmit={handleSubmit(EditBook)}>
         <S.ContentContainer>
           <S.HeaderContainer>
             <S.TitleText>도서 수정</S.TitleText>
@@ -60,4 +90,4 @@ const DeleteModal = ({ onClose, onSubmit }: ModalPropsType) => {
   );
 };
 
-export default DeleteModal;
+export default EditModal;

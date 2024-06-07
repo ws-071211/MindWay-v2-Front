@@ -5,18 +5,23 @@ import DeleteModal from '../../MyPage/DeleteModal';
 import EditModal from '../../MyPage/EditModal';
 import { BookInfoType } from '@/types';
 
-const BookRequestItem = (i:BookInfoType) => {
+const BookRequestItem = ({ id, title, author, yes24Link }: BookInfoType) => {
   const [isShow, setIsShow] = useState<string>('none');
+  const i = {
+    id: id,
+    title: title,
+    author: author,
+    yes24Link: yes24Link,
+  };
 
   return (
     <>
       <S.BookRequestItem>
         <S.BookTextContainer>
-          <S.TitleText>{i.title}</S.TitleText>
-          <S.AuthorText>{i.author}</S.AuthorText>
+          <S.TitleText>{title}</S.TitleText>
+          <S.AuthorText>{author}</S.AuthorText>
         </S.BookTextContainer>
         <S.ToolBox>
-          
           <S.ToolButton onClick={() => setIsShow('edit')}>
             <EditButtonIcon />
           </S.ToolButton>
@@ -25,8 +30,12 @@ const BookRequestItem = (i:BookInfoType) => {
           </S.ToolButton>
         </S.ToolBox>
       </S.BookRequestItem>
-      {isShow === 'edit' && <EditModal onClose={() => setIsShow('')}/>}
-      {isShow === 'delete' && <DeleteModal onClose={() => setIsShow('')}/>}
+      {isShow === 'edit' && (
+        <EditModal item={i} onClose={() => setIsShow('')} />
+      )}
+      {isShow === 'delete' && (
+        <DeleteModal item={i} onClose={() => setIsShow('')} />
+      )}
     </>
   );
 };

@@ -1,4 +1,4 @@
-import { BackgroundBook, MeatBallIcon } from '@/asset';
+import { MeatBallIcon, NoneBookIcon } from '@/asset';
 import * as S from './style';
 import { useEffect, useState } from 'react';
 import IntroductionModal from './IntroductionModal';
@@ -6,6 +6,7 @@ import { TokenManager, instance } from '@/apis';
 import { UserType } from '@/types';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAuthority } from '@/store/user';
+import BookRequestItem from '../common/BookRequestItem';
 
 const MyPage = () => {
   const [user, setUser] = useState<UserType>();
@@ -58,7 +59,9 @@ const MyPage = () => {
                   MINDWAY 소개
                 </S.ModalText>
                 <S.ModalContour />
-                <S.LogoutText onClick={()=>tokenManager.removeToken()}>로그아웃</S.LogoutText>
+                <S.LogoutText onClick={() => tokenManager.removeToken()}>
+                  로그아웃
+                </S.LogoutText>
               </S.ModalWrapper>
             )}
           </S.MeatBallIconContainer>
@@ -66,6 +69,19 @@ const MyPage = () => {
         <S.ApplicantContainer>
           도서 신청 목록
           <S.BookRequestList>
+            {book && book.length == 0 ? (
+              // <NoneBookIcon/>
+              <></> //이미지 크기 때문에 추후에 다시 만들게요!
+            ) : (
+              book.map((item) => (
+                <BookRequestItem
+                  key={item.id}
+                  title={item.title}
+                  author={item.author}
+                  yes24Link={item.book_url}
+                />
+              ))
+            )}
           </S.BookRequestList>
         </S.ApplicantContainer>
       </S.Wrapper>

@@ -1,12 +1,44 @@
-import { MeatBallIcon } from '@/asset';
-import BookRequestItem from './BookRequestItem';
+import { MeatBallIcon, NoneBookIcon } from '@/asset';
 import * as S from './style';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import IntroductionModal from './IntroductionModal';
+import { TokenManager, instance } from '@/apis';
+import { UserType } from '@/types';
+import { useDispatch, useSelector } from 'react-redux';
+import { setAuthority } from '@/store/user';
+import BookRequestItem from '../common/BookRequestItem';
 
-const BookPage = () => {
-  const [toggleModal, setToggleModal] = useState(false);
-  const [toggleIntro, setToggleIntro] = useState(false);
+const MyPage = () => {
+  const [user, setUser] = useState<UserType>();
+  const [book, setBook] = useState([]);
+  const [toggleModal, setToggleModal] = useState<boolean>(false);
+  const [toggleIntro, setToggleIntro] = useState<boolean>(false);
+  const dispatch = useDispatch();
+  const tokenManager = new TokenManager();
+
+  const fetchUser = async () => {
+    try {
+      const { data } = await instance.get(`/my`);
+      setUser(data);
+      dispatch(setAuthority(data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const fetchBook = async () => {
+    try {
+      const { data } = await instance.get(`/my/book`);
+      setBook(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchUser();
+    fetchBook();
+  }, []);
   return (
     <>
       <S.Wrapper>
@@ -14,7 +46,7 @@ const BookPage = () => {
           <S.WelcomeContainer>
             <S.WelcomeText>안녕하세요</S.WelcomeText>
             <S.UserNameText>
-              <span>한재형</span>님
+              <span>{user?.name}</span>님
             </S.UserNameText>
           </S.WelcomeContainer>
           <S.MeatBallIconContainer>
@@ -27,7 +59,9 @@ const BookPage = () => {
                   MINDWAY 소개
                 </S.ModalText>
                 <S.ModalContour />
-                <S.LogoutText>로그아웃</S.LogoutText>
+                <S.LogoutText onClick={() => tokenManager.removeToken()}>
+                  로그아웃
+                </S.LogoutText>
               </S.ModalWrapper>
             )}
           </S.MeatBallIconContainer>
@@ -35,16 +69,27 @@ const BookPage = () => {
         <S.ApplicantContainer>
           도서 신청 목록
           <S.BookRequestList>
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
-            <BookRequestItem />
+            {book && book.length == 0 ? (
+              // <NoneBookIcon/>
+              <></> //이미지 크기 때문에 추후에 다시 만들게요!
+            ) : (
+              book.map((item) => (
+                <BookRequestItem
+                  key={item.id}
+                  title={item.title}
+                  author={item.author}
+                  yes24Link={item.book_url}
+                />
+              ))
+            )}
           </S.BookRequestList>
         </S.ApplicantContainer>
       </S.Wrapper>
-      {toggleIntro && <IntroductionModal onClose={()=>setToggleIntro(false)}/>}
+      {toggleIntro && (
+        <IntroductionModal onClose={() => setToggleIntro(false)} />
+      )}
     </>
   );
 };
 
-export default BookPage;
+export default MyPage;

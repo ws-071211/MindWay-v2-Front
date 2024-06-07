@@ -12,7 +12,7 @@ const AuthPage = () => {
 
   const fetchData = async () => {
     try {
-      const { data } = await instance.post(`/api/v2/auth`, {
+      const { data } = await instance.post(`/auth`, {
         code: gauthCode,
       });
       tokenManager.setToken(data);

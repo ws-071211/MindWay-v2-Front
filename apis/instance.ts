@@ -6,31 +6,27 @@ const instance = axios.create({
   withCredentials: true,
 });
 
-instance.interceptors.request.use(
-  async (config) => {
-    const tokenManager = new TokenManager();
-    const vaildAccessToken = tokenManager.validateToken(
-      tokenManager.accessTokenExpiresIn,
-      tokenManager.accessToken
-    ); 
-    const vaildRefreshToken = tokenManager.validateToken(
-      tokenManager.refreshTokenExpiresIn,
-      tokenManager.refreshToken
-    ); 
-    if (!vaildAccessToken && vaildRefreshToken) {
-      await tokenManager.reissueToken({
-        refreshToken: tokenManager.refreshToken,
-      });
-      tokenManager.initToken();
-    } else if (!vaildAccessToken && !vaildRefreshToken) {
-      tokenManager.removeToken();
-    }
-    config.headers['Authorization'] = tokenManager.accessToken 
-      ? `Bearer ${tokenManager.accessToken}`
-      : undefined;
-    return config;
+instance.interceptors.request.use(async (config) => {
+  const tokenManager = new TokenManager();
+  if (
+    !(tokenManager.accessTokenExpiresIn, tokenManager.accessToken) &&
+    (tokenManager.refreshTokenExpiresIn, tokenManager.refreshToken)
+  ) {
+    await tokenManager.reissueToken({
+      refreshToken: tokenManager.refreshToken,
+    });
+    tokenManager.initToken();
+  } else if (
+    !(tokenManager.accessTokenExpiresIn, tokenManager.accessToken) &&
+    !(tokenManager.refreshTokenExpiresIn, tokenManager.refreshToken)
+  ) {
+    tokenManager.removeToken();
   }
-);
+  config.headers['Authorization']= tokenManager.accessToken
+    ? `Bearer ${tokenManager.accessToken}`
+    : undefined;
+  return config;
+});
 
 instance.interceptors.response.use(
   (res) => {

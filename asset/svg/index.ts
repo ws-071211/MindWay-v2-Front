@@ -3,5 +3,8 @@ export { default as LoginLogo } from './LoginLogo';
 export { default as GAuthLogo } from './GAuthLogo';
 export { default as GAuthText } from './GAuthText';
 export { default as MeatBallIcon } from './MeatBallIcon';
-export { default as EditButtonIcon } from './EditButtonIcon'
-export { default as DeleteButtonIcon } from './DeleteButtonIcon'
+export { default as EditButtonIcon } from './EditButtonIcon';
+export { default as DeleteButtonIcon } from './DeleteButtonIcon';
+export { default as ErrorIcon } from './ErrorIcon';
+export { default as SuccessIcon } from './SuccessIcon';
+export { default as NoneBookIcon } from './NoneBookIcon';

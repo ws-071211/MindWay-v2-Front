@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import IntroductionModal from './IntroductionModal';
 import { TokenManager, instance } from '@/apis';
 import { UserType } from '@/types';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setAuthority } from '@/store/user';
 import BookRequestItem from '../common/BookRequestItem';
 

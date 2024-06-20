@@ -1,6 +1,7 @@
 export interface BookInfoType{
   id?: number
+  student?: string,
   title?: string
   author?: string
-  yes24Link?: string
+  book_url?: string
 }

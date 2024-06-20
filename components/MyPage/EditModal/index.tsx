@@ -19,7 +19,7 @@ const EditModal = ({ item, onClose }: ModalPropsType) => {
     defaultValues: {
       title: item.title,
       author: item.author,
-      yes24Link: item.yes24Link,
+      book_url: item.book_url,
     },
   });
 
@@ -28,7 +28,7 @@ const EditModal = ({ item, onClose }: ModalPropsType) => {
       await instance.patch(`/order/${item.id}`, {
         title: data.title,
         author: data.author,
-        book_url: data.yes24Link,
+        book_url: data.book_url,
       });
       toast.success('도서 수정이 성공했어요!', {
         ...toastOption,
@@ -75,9 +75,9 @@ const EditModal = ({ item, onClose }: ModalPropsType) => {
             <Input
               label='링크'
               placeholder='YES24 링크를 입력해주세요.'
-              error={!!errors.yes24Link}
+              error={!!errors.book_url}
               errorMessage='YES24링크를 입력해주세요'
-              register={register('yes24Link', {
+              register={register('book_url', {
                 required: true,
                 pattern: /https?:\/\/.*/,
               })}

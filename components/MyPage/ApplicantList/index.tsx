@@ -21,7 +21,7 @@ const ApplicantList = ({ onClose }: ModalPropsType) => {
             student={item.student}
             title={item.title}
             author={item.author}
-            book_url={item.book_url}s
+            book_url={item.book_url}
           />
         ))} */}
       </S.BookRequestList>

@@ -28,21 +28,7 @@ const MyList = ({ onClose }: ModalPropsType) => {
 
   const fetchBook = async () => {
     try {
-      // const { data } = await instance.get(`/my/book`);
-      const data = [
-        {
-          id: 1,
-          title: '세상의 마지막 기차역',
-          author: '한재형',
-          book_url: 'https://dotori-gsm.com',
-        },
-        {
-          id: 2,
-          title: '체리새우',
-          author: '김태윤',
-          book_url: 'https://youtube.com',
-        },
-      ];
+      const { data } = await instance.get(`/my/book`);
       setBook(data);
     } catch (error) {
       console.log(error);
@@ -50,8 +36,8 @@ const MyList = ({ onClose }: ModalPropsType) => {
   };
 
   useEffect(() => {
-    // fetchUser();
-    // fetchBook();
+    fetchUser();
+    fetchBook();
   }, []);
   return (
     <>
@@ -73,12 +59,12 @@ const MyList = ({ onClose }: ModalPropsType) => {
                   MINDWAY 소개
                 </S.ModalText>
                 <S.ModalContour />
-                {/* {user.authority !== 'ROLE_STUDENT' && ( */}
-                <>
-                  <S.ModalText onClick={onClose}>도서 신청 목록</S.ModalText>
-                  <S.ModalContour />
-                </>
-                {/* )} */}
+                {user.authority !== 'ROLE_STUDENT' && (
+                  <>
+                    <S.ModalText onClick={onClose}>도서 신청 목록</S.ModalText>
+                    <S.ModalContour />
+                  </>
+                )}
                 <S.LogoutText onClick={() => tokenManager.removeToken()}>
                   로그아웃
                 </S.LogoutText>

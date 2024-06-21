@@ -82,6 +82,7 @@ export const ModalWrapper = styled.div`
   padding: 1.25rem 1.75rem;
   width: 10.5rem;
   box-shadow: 0rem 0rem 1.25rem 0rem ${({ theme }) => theme.color.Shadow.card};
+  background-color: ${({ theme }) => theme.color.WHITE};
   border-radius: 0.5rem;
   position: absolute;
   top: 2.25rem;

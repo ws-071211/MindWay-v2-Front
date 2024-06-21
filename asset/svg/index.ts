@@ -8,3 +8,5 @@ export { default as DeleteButtonIcon } from './DeleteButtonIcon';
 export { default as ErrorIcon } from './ErrorIcon';
 export { default as SuccessIcon } from './SuccessIcon';
 export { default as NoneBookIcon } from './NoneBookIcon';
+export { default as BackIcon } from './BackIcon';
+export { default as LinkIcon } from './LinkIcon';

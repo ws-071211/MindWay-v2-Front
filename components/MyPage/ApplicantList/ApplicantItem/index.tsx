@@ -1,4 +1,4 @@
-import { DeleteButtonIcon, EditButtonIcon, LinkIcon } from '@/asset';
+import { DeleteButtonIcon, LinkIcon } from '@/asset';
 import * as S from './style';
 import { useState } from 'react';
 import DeleteModal from '../../DeleteModal';
@@ -7,7 +7,6 @@ import { useRouter } from 'next/router';
 
 const ApplicantItem = ({
   id,
-  student,
   title,
   author,
   book_url,
@@ -17,15 +16,12 @@ const ApplicantItem = ({
   const bookData = {
     id: id,
     title: title,
-    author: author,
-    book_url: book_url,
   };
 
   return (
     <>
       <S.ApplicantItem>
         <S.BookTextContainer>
-          <S.StudentNameText>{student}</S.StudentNameText>
           <S.TitleText>{title}</S.TitleText>
           <S.AuthorText>{author}</S.AuthorText>
         </S.BookTextContainer>

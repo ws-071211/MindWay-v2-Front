@@ -31,11 +31,6 @@ export const AuthorText = styled.div`
   color: ${({ theme }) => theme.color.Gray.gray600};
 `;
 
-export const StudentNameText = styled.div`
-  ${({ theme }) => theme.typography.m3.regular}
-  color: ${({ theme }) => theme.color.Gray.gray600};
-`;
-
 export const ToolBox = styled.div`
   display: flex;
   gap: 2rem;

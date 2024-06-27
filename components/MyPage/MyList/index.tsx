@@ -82,6 +82,7 @@ const MyList = ({ onClose }: ModalPropsType) => {
               book.map((item) => (
                 <BookRequestItem
                   key={item.id}
+                  id={item.id}
                   title={item.title}
                   author={item.author}
                   book_url={item.book_url}

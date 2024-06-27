@@ -7,7 +7,7 @@ import { BookInfoType } from '@/types';
 
 const BookRequestItem = ({ id, title, author, book_url }: BookInfoType) => {
   const [isShow, setIsShow] = useState<string>('none');
-  const i = {
+  const bookData = {
     id: id,
     title: title,
     author: author,
@@ -18,8 +18,8 @@ const BookRequestItem = ({ id, title, author, book_url }: BookInfoType) => {
     <>
       <S.BookRequestItem>
         <S.BookTextContainer>
-          <S.AuthorText>{author}</S.AuthorText>
           <S.TitleText>{title}</S.TitleText>
+          <S.AuthorText>{author}</S.AuthorText>
         </S.BookTextContainer>
         <S.ToolBox>
           <S.ToolButton onClick={() => setIsShow('edit')}>
@@ -31,10 +31,10 @@ const BookRequestItem = ({ id, title, author, book_url }: BookInfoType) => {
         </S.ToolBox>
       </S.BookRequestItem>
       {isShow === 'edit' && (
-        <EditModal item={i} onClose={() => setIsShow('')} />
+        <EditModal item={bookData} onClose={() => setIsShow('')} />
       )}
       {isShow === 'delete' && (
-        <DeleteModal item={i} onClose={() => setIsShow('')} />
+        <DeleteModal item={bookData} onClose={() => setIsShow('')} />
       )}
     </>
   );

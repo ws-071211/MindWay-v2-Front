@@ -1,6 +1,6 @@
 import { LoginPage } from '@/components';
 
-export default function login() {
+export default function auth() {
   return (
     <>
       <LoginPage />

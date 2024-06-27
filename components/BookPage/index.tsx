@@ -1,7 +1,5 @@
 const BookPage = () => {
-  return (
-    <></>
-  );
+  return <></>;
 };
 
 export default BookPage;

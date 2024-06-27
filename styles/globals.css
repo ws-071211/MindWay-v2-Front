@@ -99,7 +99,7 @@ body::-webkit-scrollbar {
 
 body {
   -ms-overflow-style: none;
-  scrollbar-width: none;
+  scrollbar-width: 0px;
 }
 
 a {
@@ -108,10 +108,13 @@ a {
 }
 
 input {
-  font-size: 1rem;
+  border: none;
+  outline: none;
 }
 
 button {
+  border: none;
+  outline: none;
   font-size: 1rem;
   cursor: pointer;
 }

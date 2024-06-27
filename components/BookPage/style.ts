@@ -52,3 +52,7 @@ export const RecommandList = styled.div`
     align-items: center;
   }
 `;
+
+export const PlusContainer = styled.div`
+  cursor: pointer;
+`

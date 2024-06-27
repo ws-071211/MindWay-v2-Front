@@ -10,3 +10,5 @@ export { default as SuccessIcon } from './SuccessIcon';
 export { default as NoneBookIcon } from './NoneBookIcon';
 export { default as BackIcon } from './BackIcon';
 export { default as LinkIcon } from './LinkIcon';
+export { default as Xmark } from './Xmark';
+export { default as PlusIcon } from './PlusIcon';

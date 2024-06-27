@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { HeaderLogo } from '@/asset/svg';
+import { HeaderLogo } from '@/asset';
 import * as S from './style';
 import { useRouter } from 'next/router';
 import { usePathname } from 'next/navigation';

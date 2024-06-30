@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-top: 40px;
 `;
 
 export const Container = styled.div`
@@ -14,7 +15,7 @@ export const Container = styled.div`
   height: 100%;
   background: var(--BACKGROUND_BG);
   display: grid;
-  gap: 2.5dvh;
+  gap: 3.5dvh;
   padding: 0 25vw 3dvh 25vw;
   overflow-y: auto;
   overflow-x: hidden;
@@ -22,4 +23,5 @@ export const Container = styled.div`
     '공지 공지 공지 공지'
     '목표독서량 목표독서량 이달의독서왕 이달의독서왕'
     '달력 달력 독서행사 독서행사';
+  grid-template-rows: 202fr 247fr 352fr;
 `;

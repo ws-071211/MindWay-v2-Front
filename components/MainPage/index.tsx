@@ -1,9 +1,12 @@
+import NotificationHeader from './NotificationHeader';
 import * as S from './style';
 
 const MainPage = () => {
   return (
     <S.Wrapper>
-      <S.Container></S.Container>
+      <S.Container>
+        <NotificationHeader />
+      </S.Container>
     </S.Wrapper>
   );
 };

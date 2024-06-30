@@ -12,8 +12,8 @@ export const Container = styled.div`
   border-radius: 0.5rem;
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.05);
   ${({ theme }) => theme.typography.m3.semibold}
-  grid-area: 목표독서량;
-  margin-left: 24px;
+  grid-area: 이달의독서왕;
+  margin-right: 24px;
 `;
 
 export const Title = styled.div`
@@ -23,25 +23,20 @@ export const Title = styled.div`
   justify-content: space-between;
 `;
 
-export const TotalBar = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  justify-content: space-between;
-  margin-top: 0.5rem;
-`;
-
 export const DayListcontainer = styled.div`
   display: flex;
+  gap: 8px;
   justify-content: space-between;
   align-items: flex-end;
   align-self: stretch;
+  margin-top: 0.5rem;
   ${({ theme }) => theme.typography.label.regular}
   color: ${({ theme }) => theme.color.Gray.gray800};
 `;
 
 export const DayList = styled.div`
   display: flex;
+  gap: 8px;
   flex-direction: column;
   justify-content: center;
   align-items: center;

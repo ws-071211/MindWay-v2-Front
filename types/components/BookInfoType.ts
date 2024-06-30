@@ -4,3 +4,10 @@ export interface BookInfoType{
   author?: string
   book_url?: string
 }
+
+export interface RecommendBookType{
+  id?: number
+  title: string
+  author: string
+  content: string
+}

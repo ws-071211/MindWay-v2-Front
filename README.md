@@ -1,1 +1,1 @@
-# MINDWAY-V2_FrontEnd
+# MINDWAY_V2_FrontEnd

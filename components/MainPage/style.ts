@@ -24,4 +24,5 @@ export const Container = styled.div`
     '목표독서량 목표독서량 이달의독서왕 이달의독서왕'
     '달력 달력 독서행사 독서행사';
   grid-template-rows: 202fr 247fr 352fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 `;

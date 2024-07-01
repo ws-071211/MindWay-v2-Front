@@ -1,4 +1,6 @@
-const PlusIcon = ({color}:any) => {
+import { ColorType } from "@/types/asset";
+
+const PlusIcon = ({color}:ColorType) => {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'

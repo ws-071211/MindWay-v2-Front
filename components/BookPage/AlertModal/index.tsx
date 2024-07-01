@@ -2,7 +2,7 @@ import { Portal } from '@/components';
 import { ModalPropsType } from '@/types';
 import * as S from './style';
 
-const AlertModal = ({ item, onClose }: ModalPropsType) => {
+const AlertModal = ({ onClose }: ModalPropsType) => {
   return (
     <>
       <Portal onClose={onClose}>

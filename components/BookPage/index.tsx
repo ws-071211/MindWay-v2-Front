@@ -2,16 +2,20 @@ import { PlusIcon } from '@/asset';
 import * as S from './style';
 import { useEffect, useState } from 'react';
 import RecommandItem from './RecommandItem';
-import ApplicantModal from './ApplicantModal';
-import { RecommendBookType } from '@/types';
+import { RecommendBookType, RecommendType } from '@/types';
 import { instance } from '@/apis';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store';
+import RecommendModal from './RecommendModal';
+import AlertModal from './AlertModal';
+import ApplicantModal from './ApplicantModal';
 
 const BookPage = () => {
   const [selected, setSelected] = useState<boolean>(true);
-  const [modal, setModal] = useState<boolean>(false);
-  const [type, setType] = useState<string>('NOVEL');
+  const [modal, setModal] = useState<string>('');
+  const [type, setType] = useState<RecommendType>('NOVEL');
   const [book, setBook] = useState<RecommendBookType[]>([]);
-  
+  const user = useSelector((state: RootState) => state.user);
 
   const fetchBook = async () => {
     try {
@@ -21,6 +25,7 @@ const BookPage = () => {
         },
       });
       setBook(data);
+      console.log(user);
     } catch (error) {
       console.error(error);
     }
@@ -47,11 +52,18 @@ const BookPage = () => {
               Essay
             </S.SelectedTitle>
           </S.SelectionContainer>
-          <S.PlusContainer onClick={() => setModal(true)}>
-            <PlusIcon />
+          <S.PlusContainer onClick={() => setModal('Alert')}>
+            <PlusIcon color='#333333' />
           </S.PlusContainer>
         </S.Header>
         <S.RecommandList>
+          {user.authority !== 'ROLE_STUDENT' && (
+            <S.AddApplicantButton onClick={()=>setModal('Recommend')}>
+              <S.PlusContainer>
+                <PlusIcon color='#7EAF72' />
+              </S.PlusContainer>
+            </S.AddApplicantButton>
+          )}
           {book &&
             book.map((item) => (
               <RecommandItem
@@ -63,7 +75,9 @@ const BookPage = () => {
             ))}
         </S.RecommandList>
       </S.Wrapper>
-      {modal && <ApplicantModal onClose={() => setModal(false)} />}
+      {modal === 'Alert' && <AlertModal onClose={() => setModal('Applicant')} />}
+      {modal === 'Applicant' && <ApplicantModal onClose={() => setModal('')} />}
+      {modal === 'Recommend' && <RecommendModal onClose={() => setModal('')} type={type}/>}
     </>
   );
 };

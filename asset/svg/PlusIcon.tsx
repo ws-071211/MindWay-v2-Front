@@ -1,4 +1,4 @@
-const PlusIcon = () => {
+const PlusIcon = ({color}:any) => {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -9,13 +9,13 @@ const PlusIcon = () => {
     >
       <path
         d='M3 12L21 12'
-        stroke='#333333'
+        stroke={color}
         strokeWidth='2'
         strokeLinecap='round'
       />
       <path
         d='M12 3V21'
-        stroke='#333333'
+        stroke={color}
         strokeWidth='2'
         strokeLinecap='round'
       />

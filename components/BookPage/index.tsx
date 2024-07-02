@@ -25,7 +25,6 @@ const BookPage = () => {
         },
       });
       setBook(data);
-      console.log(user);
     } catch (error) {
       console.error(error);
     }

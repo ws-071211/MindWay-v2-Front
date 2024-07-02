@@ -8,7 +8,6 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  cursor: pointer;
   @media (max-width: 57rem) {
     width: 100%;
   }

@@ -5,7 +5,7 @@ export const Wrapper = styled.form`
   padding: 1.75rem;
   border-radius: 0.5rem;
   width: 27.5rem;
-  box-shadow: 0px 0px 20px 0px ${({theme})=>theme.color.Shadow.card};
+  box-shadow: 0rem 0rem 1.25rem 0rem ${({theme})=>theme.color.Shadow.card};
   display: inline-flex;
   flex-direction: column;
   align-items: center;

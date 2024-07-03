@@ -1,3 +1,4 @@
+import EventCalendar from './EventCalendar';
 import NotificationHeader from './NotificationHeader';
 import ReadinKing from './ReadinKing';
 import ReadingGoal from './ReadingGoal';
@@ -10,6 +11,7 @@ const MainPage = () => {
         <NotificationHeader />
         <ReadingGoal />
         <ReadinKing />
+        <EventCalendar />
       </S.Container>
     </S.Wrapper>
   );

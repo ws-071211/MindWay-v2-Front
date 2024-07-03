@@ -46,3 +46,11 @@ export const DayList = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+export const NowNumber = styled.p`
+  ${({ theme }) => theme.typography.m1.semibold}
+`;
+export const GoalsNumber = styled.p`
+  color: #7eaf72;
+  ${({ theme }) => theme.typography.m3.regular}
+`;

@@ -35,7 +35,8 @@ const ReadingGoal = () => {
       </S.Title>
       <S.TotalBar>
         <Bar before={GoalsNumberOfBooks} after={NowNumberOfBooks} />
-        <p>{NowNumberOfBooks}</p>/<p>{GoalsNumberOfBooks}</p>
+        <S.NowNumber>{NowNumberOfBooks}</S.NowNumber>/
+        <S.GoalsNumber>{GoalsNumberOfBooks}</S.GoalsNumber>
       </S.TotalBar>
       <S.DayListcontainer>
         {dayList.map((yoil, index) => (

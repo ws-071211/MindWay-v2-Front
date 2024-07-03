@@ -28,6 +28,7 @@ const ApplicantModal = ({ onClose }: ModalPropsType) => {
         ...toastOption,
         icon: <SuccessIcon />,
       });
+      onClose();
     } catch (error) {
       console.log(error);
       toast.error('도서 신청에 실패했어요', {

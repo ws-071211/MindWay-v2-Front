@@ -28,6 +28,7 @@ const RecommendModal = ({ onClose, type }: ModalPropsType) => {
         ...toastOption,
         icon: <SuccessIcon />,
       });
+      onClose();
     } catch (error) {
       console.log(error);
       toast.error('추천 도서 등록에 실패했어요', {

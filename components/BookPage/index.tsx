@@ -63,8 +63,8 @@ const BookPage = () => {
               </S.PlusContainer>
             </S.AddApplicantButton>
           )}
-          {book &&
-            book.map((item) => (
+          {
+            book?.map((item) => (
               <RecommandItem
                 key={item.id}
                 title={item.title}

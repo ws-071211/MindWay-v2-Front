@@ -34,6 +34,7 @@ const EditModal = ({ item, onClose }: ModalPropsType) => {
         ...toastOption,
         icon: <SuccessIcon />,
       });
+      onClose();
     } catch (error) {
       console.log(error);
       toast.error('도서 수정에 실패했어요!', {

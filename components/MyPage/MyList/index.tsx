@@ -88,7 +88,7 @@ const MyList = ({ onClose }: ModalPropsType) => {
         <S.ApplicantContainer>
           도서 신청 목록
           <S.BookRequestList>
-            {book && book.length == 0 ? (
+            {book?.length == 0 ? (
               // <NoneBookIcon/>
               <></> //이미지 크기 때문에 추후에 다시 만들게요!
             ) : (

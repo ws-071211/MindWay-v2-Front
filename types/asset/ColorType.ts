@@ -1,5 +1,3 @@
 export interface ColorType{
-  color: Color
+  color: '#333333'|'#7EAF72';
 }
-
-type Color = '#333333'|'#7EAF72';

@@ -56,3 +56,19 @@ export const RecommandList = styled.div`
 export const PlusContainer = styled.div`
   cursor: pointer;
 `;
+
+
+export const AddApplicantButton = styled.div`
+  padding: 1.75rem 2rem;
+  width: 27rem;
+  border-radius: 0.5rem;
+  box-shadow: 0rem 0rem 1.25rem 0rem ${({ theme }) => theme.color.Shadow.card};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  @media (max-width: 57rem) {
+    width: 100%;
+  }
+`

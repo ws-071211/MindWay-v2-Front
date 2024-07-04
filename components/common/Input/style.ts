@@ -8,6 +8,9 @@ export const Input = styled.input<ErrorType>`
   width: 100%;
   border: ${({error,theme})=>error?`0.0625rem solid ${theme.color.SYSTEM}`:'none'};
   border-radius: 0.5rem;
+  :focus::placeholder{
+    color: transparent;
+  }
 `;
 
 export const InputBox = styled.div`

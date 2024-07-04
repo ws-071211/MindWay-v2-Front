@@ -10,14 +10,14 @@ import { toast } from 'react-toastify';
 import toastOption from '@/lib/toastOption';
 import { ErrorIcon, SuccessIcon } from '@/asset';
 
-const EditModal = ({ onClose }: ModalPropsType) => {
+const ApplicantModal = ({ onClose }: ModalPropsType) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<BookInfoType>();
 
-  const EditBook = async (data: BookInfoType) => {
+  const ApplicantBook = async (data: BookInfoType) => {
     try {
       await instance.post(`/order`, {
         title: data.title,
@@ -28,6 +28,7 @@ const EditModal = ({ onClose }: ModalPropsType) => {
         ...toastOption,
         icon: <SuccessIcon />,
       });
+      onClose();
     } catch (error) {
       console.log(error);
       toast.error('도서 신청에 실패했어요', {
@@ -39,7 +40,7 @@ const EditModal = ({ onClose }: ModalPropsType) => {
 
   return (
     <Portal onClose={onClose}>
-      <S.Wrapper onSubmit={handleSubmit(EditBook)}>
+      <S.Wrapper onSubmit={handleSubmit(ApplicantBook)}>
         <S.ContentContainer>
           <S.HeaderContainer>
             <S.TitleText>도서 신청</S.TitleText>
@@ -84,4 +85,4 @@ const EditModal = ({ onClose }: ModalPropsType) => {
   );
 };
 
-export default EditModal;
+export default ApplicantModal;

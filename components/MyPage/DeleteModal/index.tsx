@@ -14,6 +14,7 @@ const DeleteModal = ({ item, onClose }: ModalPropsType) => {
         ...toastOption,
         icon: <SuccessIcon />,
       });
+      onClose();
     } catch (error) {
       toast.error('신청 도서 삭제가 실패했어요!', {
         ...toastOption,

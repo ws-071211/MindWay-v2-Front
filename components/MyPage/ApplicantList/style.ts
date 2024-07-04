@@ -32,7 +32,7 @@ export const ReturnButton = styled.div`
 `;
 
 export const Empty = styled.div`
-  width: 24px;
+  width: 1.5rem;
 `;
 
 export const BookRequestList = styled.div`

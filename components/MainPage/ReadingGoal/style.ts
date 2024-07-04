@@ -3,17 +3,17 @@ import styled from '@emotion/styled';
 export const Container = styled.div`
   display: flex;
   justify-content: space-between;
-  width: calc(100% - 24px);
+  width: calc(100% - 1.5rem);
   height: 100%;
   padding: 1.75rem 1.5rem;
   flex-direction: column;
   align-items: center;
   flex-shrink: 0;
   border-radius: 0.5rem;
-  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 1.25rem 0 rgba(0, 0, 0, 0.05);
   ${({ theme }) => theme.typography.m3.semibold}
   grid-area: 목표독서량;
-  margin-left: 24px;
+  margin-left: 1.5rem;
 `;
 
 export const Title = styled.div`

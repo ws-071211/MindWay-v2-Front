@@ -4,17 +4,17 @@ export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  width: calc(100% - 48px);
+  width: calc(100% - 3rem);
   height: 100%;
   padding: 1.75rem 2.75rem;
   flex-direction: row;
   align-items: flex-start;
   flex-shrink: 0;
   border-radius: 0.5rem;
-  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 1.25rem 0 rgba(0, 0, 0, 0.05);
   ${({ theme }) => theme.typography.m3.semibold}
   grid-area: 독서행사달력;
-  margin: 0 24px;
+  margin: 0 1.5rem;
 `;
 
 export const Layer = styled.div`

@@ -13,7 +13,7 @@ export const NoticeContainer = styled.div`
 
 export const TextContainer = styled.div`
   display: grid;
-  gap: 8px;
+  gap: 0.5rem;
   p,
   h2 {
     margin: 0;

@@ -23,16 +23,16 @@ export const Header = styled.div`
 export const SelectionContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 1.25rem;
 `;
 
 export const SelectedTitle = styled.div<{ selected: boolean }>`
-  padding: 8px 12px;
+  padding: 0.5rem 0.75rem;
   ${({ selected, theme }) =>
     selected ? theme.typography.h3.semibold : theme.typography.h3.regular}
   color: ${({ selected, theme }) =>
     selected ? theme.color.BLACK : theme.color.Gray.gray400};
-  border-bottom: 2px solid
+  border-bottom: 0.125rem solid
     ${({ selected, theme }) => (selected ? theme.color.MAIN : `transparent`)};
   display: flex;
   justify-content: center;
@@ -55,4 +55,4 @@ export const RecommandList = styled.div`
 
 export const PlusContainer = styled.div`
   cursor: pointer;
-`
+`;

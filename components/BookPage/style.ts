@@ -55,7 +55,8 @@ export const RecommandList = styled.div`
 
 export const PlusContainer = styled.div`
   cursor: pointer;
-`
+`;
+
 
 export const AddApplicantButton = styled.div`
   padding: 1.75rem 2rem;

@@ -21,6 +21,6 @@
       "./types/asset"
     ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx","./types/asset/image.d.ts"],
   "exclude": ["node_modules"]
 }

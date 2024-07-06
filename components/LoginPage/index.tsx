@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { LoginLogo, GAuthLogo, GAuthText } from '@/asset';
+import { LoginLogo, GAuthLogo} from '@/asset';
 import * as S from './style';
 
 const LoginPage = () => {
@@ -12,7 +12,7 @@ const LoginPage = () => {
         <S.GAuthLoginButton onClick={() => router.replace(GAuthUri)}>
           <S.LoginButtonText>
             <GAuthLogo />
-            <GAuthText />
+            {/* <GAuthText /> */}
           </S.LoginButtonText>
         </S.GAuthLoginButton>
       </S.LoginContainer>

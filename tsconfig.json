@@ -18,7 +18,7 @@
       "@/*": ["./*"]
     },
     "typeRoots": [
-      "/types/asset"
+      "./types/asset"
     ]
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

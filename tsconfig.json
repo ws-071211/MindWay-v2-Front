@@ -16,7 +16,10 @@
     "incremental": true,
     "paths": {
       "@/*": ["./*"]
-    }
+    },
+    "typeRoots": [
+      "/types/asset"
+    ]
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]

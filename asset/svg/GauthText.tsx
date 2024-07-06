@@ -1,4 +1,4 @@
-const GAuthText = () => {
+export const GAuthText = () => {
   return (
     <svg
       width='141'
@@ -14,5 +14,3 @@ const GAuthText = () => {
     </svg>
   );
 };
-
-export default GAuthText;

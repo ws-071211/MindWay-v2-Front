@@ -1,4 +1,4 @@
-const EditButtonIcon = () => {
+export const EditButtonIcon = () => {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -16,5 +16,3 @@ const EditButtonIcon = () => {
     </svg>
   );
 };
-
-export default EditButtonIcon;

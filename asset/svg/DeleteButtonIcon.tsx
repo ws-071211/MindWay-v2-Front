@@ -1,4 +1,4 @@
-const EditButtonIcon = () => {
+export const DeleteButtonIcon = () => {
   return (
     <svg
       width='24'
@@ -29,5 +29,3 @@ const EditButtonIcon = () => {
     </svg>
   );
 };
-
-export default EditButtonIcon;

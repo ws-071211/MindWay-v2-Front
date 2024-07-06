@@ -1,4 +1,4 @@
-const SuccessIcon = () => {
+export const SuccessIcon = () => {
   return (
     <svg
       width='24'
@@ -17,5 +17,3 @@ const SuccessIcon = () => {
     </svg>
   );
 };
-
-export default SuccessIcon;

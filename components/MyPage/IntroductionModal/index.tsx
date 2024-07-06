@@ -1,9 +1,8 @@
 import Portal from '@/components/Portal';
 import { ModalPropsType } from '@/types';
 import * as S from './style';
-import Xmark from '@/asset/svg/Xmark';
 import Image from 'next/image';
-import { BackgroundBook } from '@/asset';
+import { BackgroundBook, Xmark } from '@/asset';
 
 const IntroductionModal = ({ onClose }: ModalPropsType) => {
   return (

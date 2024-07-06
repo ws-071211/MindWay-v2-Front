@@ -1,4 +1,4 @@
-const NoneBookIcon = () => {
+export const NoneBookIcon = () => {
   return (
     <svg
       width='414'
@@ -16,5 +16,3 @@ const NoneBookIcon = () => {
     </svg>
   );
 };
-
-export default NoneBookIcon;

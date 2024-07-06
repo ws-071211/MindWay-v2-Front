@@ -1,4 +1,4 @@
-const MeatBallIcon = () => {
+export const MeatBallIcon = () => {
   return (
     <svg
       width='24'
@@ -13,5 +13,3 @@ const MeatBallIcon = () => {
     </svg>
   );
 };
-
-export default MeatBallIcon;

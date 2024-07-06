@@ -1,14 +1,13 @@
 import { Portal } from '@/components';
 import { ModalPropsType } from '@/types';
 import * as S from './style';
-import Xmark from '@/asset/svg/Xmark';
 import Input from '@/components/common/Input';
 import { useForm } from 'react-hook-form';
 import { BookInfoType } from '@/types/components/BookInfoType';
 import { instance } from '@/apis';
 import { toast } from 'react-toastify';
 import toastOption from '@/lib/toastOption';
-import { ErrorIcon, SuccessIcon } from '@/asset';
+import { ErrorIcon, SuccessIcon, Xmark } from '@/asset';
 
 const EditModal = ({ item, onClose }: ModalPropsType) => {
   const {

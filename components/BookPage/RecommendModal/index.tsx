@@ -1,14 +1,13 @@
 import { Portal } from '@/components';
 import { ModalPropsType, RecommendType } from '@/types';
 import * as S from './style';
-import Xmark from '@/asset/svg/Xmark';
 import Input from '@/components/common/Input';
 import { useForm } from 'react-hook-form';
 import { RecommendBookType } from '@/types/components/BookInfoType';
 import { instance } from '@/apis';
 import { toast } from 'react-toastify';
 import toastOption from '@/lib/toastOption';
-import { ErrorIcon, SuccessIcon } from '@/asset';
+import { ErrorIcon, SuccessIcon, Xmark } from '@/asset';
 
 const RecommendModal = ({ onClose, type }: ModalPropsType) => {
   const {

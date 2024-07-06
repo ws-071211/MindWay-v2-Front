@@ -1,4 +1,4 @@
-const LinkIcon = () => {
+export const LinkIcon = () => {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -30,4 +30,3 @@ const LinkIcon = () => {
   );
 };
 
-export default LinkIcon;

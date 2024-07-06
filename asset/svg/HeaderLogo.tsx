@@ -1,4 +1,4 @@
-const HeaderLogo = () => {
+export const HeaderLogo = () => {
   return (
     <svg
       viewBox='0 0 200 80'
@@ -29,5 +29,3 @@ const HeaderLogo = () => {
     </svg>
   );
 };
-
-export default HeaderLogo;

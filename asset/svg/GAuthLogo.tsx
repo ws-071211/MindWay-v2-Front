@@ -1,4 +1,4 @@
-const GAuthLogo = () => {
+export const GAuthLogo = () => {
   return (
     <svg
       width='18'
@@ -16,5 +16,3 @@ const GAuthLogo = () => {
     </svg>
   );
 };
-
-export default GAuthLogo;

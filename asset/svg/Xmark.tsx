@@ -1,4 +1,4 @@
-const Xmark = () => {
+export const Xmark = () => {
   return (
     <svg
       width='24'
@@ -22,5 +22,3 @@ const Xmark = () => {
     </svg>
   );
 };
-
-export default Xmark;

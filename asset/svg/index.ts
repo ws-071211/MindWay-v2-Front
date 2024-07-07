@@ -1,7 +1,7 @@
 export * from './HeaderLogo';
 export * from './LoginLogo';
 export * from './GAuthLogo';
-// export * from './GAuthText';
+export * from './GAuthText';
 export * from './MeatBallIcon';
 export * from './EditButtonIcon';
 export * from './DeleteButtonIcon';

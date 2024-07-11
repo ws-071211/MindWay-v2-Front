@@ -1,7 +1,7 @@
 export { default as HeaderLogo } from './HeaderLogo';
 export { default as LoginLogo } from './LoginLogo';
 export { default as GAuthLogo } from './GAuthLogo';
-export { default as GAuthText } from './GAuthText';
+export { default as GAuthLoginText } from './GAuthLoginText';
 export { default as MeatBallIcon } from './MeatBallIcon';
 export { default as EditButtonIcon } from './EditButtonIcon';
 export { default as DeleteButtonIcon } from './DeleteButtonIcon';
@@ -10,3 +10,5 @@ export { default as SuccessIcon } from './SuccessIcon';
 export { default as NoneBookIcon } from './NoneBookIcon';
 export { default as BackIcon } from './BackIcon';
 export { default as LinkIcon } from './LinkIcon';
+export { default as Xmark } from './Xmark';
+export { default as PlusIcon } from './PlusIcon';

@@ -1,12 +1,14 @@
-import { MeatBallIcon, NoneBookIcon } from '@/asset';
+import { MeatBallIcon, NoneBookIcon, SuccessIcon } from '@/asset';
 import * as S from './style';
 import { useEffect, useState } from 'react';
 import IntroductionModal from '../IntroductionModal';
-import { TokenManager, instance } from '@/apis';
+import { instance } from '@/apis';
 import { BookInfoType, ModalPropsType, UserType } from '@/types';
 import { useDispatch } from 'react-redux';
 import { setAuthority } from '@/store/user';
 import BookRequestItem from './BookRequestItem';
+import { toast } from 'react-toastify';
+import toastOption from '@/lib/toastOption';
 
 const MyList = ({ onClose }: ModalPropsType) => {
   const [user, setUser] = useState<UserType>();
@@ -14,7 +16,6 @@ const MyList = ({ onClose }: ModalPropsType) => {
   const [toggleModal, setToggleModal] = useState<boolean>(false);
   const [toggleIntro, setToggleIntro] = useState<boolean>(false);
   const dispatch = useDispatch();
-  const tokenManager = new TokenManager();
 
   const fetchUser = async () => {
     try {
@@ -34,6 +35,18 @@ const MyList = ({ onClose }: ModalPropsType) => {
       console.log(error);
     }
   };
+
+  const logout = async () => {
+    try{
+      await instance.delete(`/auth`)
+      toast.success('도서 신청이 완료되었어요!', {
+        ...toastOption,
+        icon: <SuccessIcon />,
+      });
+    }catch (error){
+      
+    }
+  } 
 
   useEffect(() => {
     fetchUser();
@@ -65,7 +78,7 @@ const MyList = ({ onClose }: ModalPropsType) => {
                     <S.ModalContour />
                   </>
                 )}
-                <S.LogoutText onClick={() => tokenManager.removeToken()}>
+                <S.LogoutText onClick={() => logout()}>
                   로그아웃
                 </S.LogoutText>
               </S.ModalWrapper>
@@ -75,13 +88,14 @@ const MyList = ({ onClose }: ModalPropsType) => {
         <S.ApplicantContainer>
           도서 신청 목록
           <S.BookRequestList>
-            {book && book.length == 0 ? (
+            {book?.length == 0 ? (
               // <NoneBookIcon/>
               <></> //이미지 크기 때문에 추후에 다시 만들게요!
             ) : (
               book.map((item) => (
                 <BookRequestItem
                   key={item.id}
+                  id={item.id}
                   title={item.title}
                   author={item.author}
                   book_url={item.book_url}

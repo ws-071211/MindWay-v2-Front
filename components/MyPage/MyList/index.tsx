@@ -5,10 +5,8 @@ import IntroductionModal from '../IntroductionModal';
 import { instance } from '@/apis';
 import { BookInfoType, ModalPropsType, UserType } from '@/types';
 import { useDispatch } from 'react-redux';
-import { setAuthority } from '@/store/user';
+import { setUserData } from '@/store/user';
 import BookRequestItem from './BookRequestItem';
-import { toast } from 'react-toastify';
-import toastOption from '@/lib/toastOption';
 
 const MyList = ({ onClose }: ModalPropsType) => {
   const [user, setUser] = useState<UserType>();
@@ -21,7 +19,7 @@ const MyList = ({ onClose }: ModalPropsType) => {
     try {
       const { data } = await instance.get(`/my`);
       setUser(data);
-      dispatch(setAuthority(data));
+      dispatch(setUserData(data));
     } catch (error) {
       console.log(error);
     }
@@ -39,10 +37,6 @@ const MyList = ({ onClose }: ModalPropsType) => {
   const logout = async () => {
     try{
       await instance.delete(`/auth`)
-      toast.success('도서 신청이 완료되었어요!', {
-        ...toastOption,
-        icon: <SuccessIcon />,
-      });
     }catch (error){
       
     }

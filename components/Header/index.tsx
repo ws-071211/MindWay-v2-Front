@@ -30,7 +30,7 @@ const Header = () => {
     } else {
       router.push('/404');
     }
-  }, []);
+  }, [param, router]);
 
   return (
     <S.HeaderContainer>

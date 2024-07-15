@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { MeatBallIcon, NoneBookIcon, SuccessIcon } from '@/asset';
 import * as S from './style';
 import { useEffect, useState } from 'react';
@@ -7,6 +8,7 @@ import { BookInfoType, ModalPropsType, UserType } from '@/types';
 import { useDispatch } from 'react-redux';
 import { setUserData } from '@/store/user';
 import BookRequestItem from './BookRequestItem';
+import { useRouter } from 'next/router';
 
 const MyList = ({ onClose }: ModalPropsType) => {
   const [user, setUser] = useState<UserType>();
@@ -46,7 +48,7 @@ const MyList = ({ onClose }: ModalPropsType) => {
   useEffect(() => {
     fetchUser();
     fetchBook();
-  }, []);
+  }, [fetchUser]);
   return (
     <>
       <S.Wrapper>

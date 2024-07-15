@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useRouter } from 'next/router';
 import { LoginLogo, GAuthLogo, GAuthLoginText } from '@/asset';
 import * as S from './style';
@@ -23,7 +24,7 @@ const AuthPage = () => {
   useEffect(() => {
     if (!gauthCode) return;
     fetchData();
-  }, [gauthCode]);
+  }, [fetchData, gauthCode]);
 
   return (
     <S.Wrapper>

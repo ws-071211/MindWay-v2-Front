@@ -8,21 +8,27 @@ const Input = ({
   register,
   error,
   errorMessage,
-  onChange
+  onChange,
+  unit,
 }: InputType) => {
   return (
-    <S.InputBox>
+    <S.Wrapper>
       <S.InputNameText>{label}</S.InputNameText>
-      <S.Input
-        type='text'
-        placeholder={placeholder}
-        value={value}
-        onChange={(e)=>onChange(e)}
-        error={error}
-        {...register}
-      />
+      <S.InputBox>
+        <S.Input
+          type='text'
+          placeholder={placeholder}
+          value={value}
+          onChange={(e) => onChange(e)}
+          error={error}
+          {...register}
+        />
+        <S.UnitText>
+          {unit}
+        </S.UnitText>
+      </S.InputBox>
       {error && <S.ErrorText>{errorMessage}</S.ErrorText>}
-    </S.InputBox>
+    </S.Wrapper>
   );
 };
 

@@ -9,6 +9,7 @@ export interface InputType {
   errorMessage?: string;
   value?: string;
   onChange?: (e: any) => void;
+  unit?: string
 }
 
 export interface ErrorType {

@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 export const Wrapper = styled.div`
   width: 57rem;
+  height: 100%;
   margin: 2.5rem auto 0;
   display: flex;
   align-items: center;
@@ -63,6 +64,40 @@ export const ApplicantContainer = styled.div`
   flex-direction: column;
   justify-self: flex-start;
   gap: 1rem;
+`;
+
+export const BookContainer = styled.div`
+  width: 100%;
+  height: max-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+export const NoneBookContainer = styled.div`
+  width: fit-content;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5rem;
+`;
+
+export const BookIconContainer = styled.div`
+  width: 20vw;
+`
+
+export const ApplicantText = styled.div`
+  ${({ theme }) => theme.typography.m1.regular}
+  color: ${({ theme }) => theme.color.Gray.gray400};
+  display: flex;
+  gap: 0.5rem;
+
+  span {
+    color: ${({ theme }) => theme.color.MAIN};
+    text-decoration-line: underline;
+  }
 `;
 
 export const BookRequestList = styled.div`

@@ -12,7 +12,6 @@ const ApplicantList = ({ onClose }: ModalPropsType) => {
     try {
       const { data } = await instance.get(`/order`);
       setList(data);
-      console.log(data);
     } catch (error) {
       console.log(error);
     }

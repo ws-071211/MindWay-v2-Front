@@ -10,16 +10,22 @@ import { toast } from 'react-toastify';
 import toastOption from '@/lib/toastOption';
 import { ErrorIcon, SuccessIcon } from '@/asset';
 
-const RecommendModal = ({ onClose, type }: ModalPropsType) => {
+const EditModal = ({ onClose, editItem }: ModalPropsType) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<RecommendBookType>();
+  } = useForm<RecommendBookType>({
+    defaultValues: {
+      title: editItem.title,
+      author: editItem.author,
+      content: editItem.content,
+    },
+  });
 
-  const ApplicantBook = async (data: RecommendBookType) => {
+  const EditBook = async (data: RecommendBookType) => {
     try {
-      await instance.post(`/recommend?type=${type}`, {
+      await instance.patch(`/recommend/${editItem.id}`, {
         title: data.title,
         content: data.content,
         author: data.author,
@@ -28,6 +34,7 @@ const RecommendModal = ({ onClose, type }: ModalPropsType) => {
         ...toastOption,
         icon: <SuccessIcon />,
       });
+      console.log(data);
       onClose();
     } catch (error) {
       console.log(error);
@@ -40,10 +47,10 @@ const RecommendModal = ({ onClose, type }: ModalPropsType) => {
 
   return (
     <Portal onClose={onClose}>
-      <S.Wrapper onSubmit={handleSubmit(ApplicantBook)}>
+      <S.Wrapper onSubmit={handleSubmit(EditBook)}>
         <S.ContentContainer>
           <S.HeaderContainer>
-            <S.TitleText>추천 도서 등록</S.TitleText>
+            <S.TitleText>추천 도서 수정</S.TitleText>
             <S.XmarkContainer onClick={onClose}>
               <Xmark />
             </S.XmarkContainer>
@@ -84,4 +91,4 @@ const RecommendModal = ({ onClose, type }: ModalPropsType) => {
   );
 };
 
-export default RecommendModal;
+export default EditModal;

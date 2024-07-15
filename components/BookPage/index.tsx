@@ -23,7 +23,8 @@ const BookPage = () => {
         params: {
           type: type,
         },
-      });
+      });    
+      
       setBook(data);
     } catch (error) {
       console.error(error);
@@ -67,6 +68,7 @@ const BookPage = () => {
             book?.map((item) => (
               <RecommandItem
                 key={item.id}
+                id={item.id}
                 title={item.title}
                 author={item.author}
                 content={item.content}

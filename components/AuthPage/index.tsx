@@ -16,10 +16,10 @@ const AuthPage = () => {
         code: gauthCode,
       });
       tokenManager.setToken(data);
-      router.replace('');
+      router.push('/');
     } catch (error) {}
   };
-
+  
   useEffect(() => {
     if (!gauthCode) return;
     fetchData();

@@ -14,6 +14,7 @@ const MyList = ({ onClose }: ModalPropsType) => {
   const [toggleModal, setToggleModal] = useState<boolean>(false);
   const [toggleIntro, setToggleIntro] = useState<boolean>(false);
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const fetchUser = async () => {
     try {
@@ -72,21 +73,25 @@ const MyList = ({ onClose }: ModalPropsType) => {
                     <S.ModalContour />
                   </>
                 )}
-                <S.LogoutText onClick={() => logout()}>
-                  로그아웃
-                </S.LogoutText>
+                <S.LogoutText onClick={() => logout()}>로그아웃</S.LogoutText>
               </S.ModalWrapper>
             )}
           </S.MeatBallIconContainer>
         </S.ProfileContainer>
         <S.ApplicantContainer>
           도서 신청 목록
-          <S.BookRequestList>
-            {book?.length == 0 ? (
-              // <NoneBookIcon/>
-              <></> //이미지 크기 때문에 추후에 다시 만들게요!
-            ) : (
-              book.map((item) => (
+          {book?.length == 0 ? (
+            <S.BookContainer>
+              <S.NoneBookContainer>
+                <NoneBookIcon />
+                <S.ApplicantText>
+                  신청한 도서가 없습니다. <span onClick={()=>router.push('/book')}>도서 신청하기</span>
+                </S.ApplicantText>
+              </S.NoneBookContainer>
+            </S.BookContainer>
+          ) : (
+            <S.BookRequestList>
+              {book.map((item) => (
                 <BookRequestItem
                   key={item.id}
                   id={item.id}
@@ -94,9 +99,9 @@ const MyList = ({ onClose }: ModalPropsType) => {
                   author={item.author}
                   book_url={item.book_url}
                 />
-              ))
-            )}
-          </S.BookRequestList>
+              ))}
+            </S.BookRequestList>
+          )}
         </S.ApplicantContainer>
       </S.Wrapper>
       {toggleIntro && (

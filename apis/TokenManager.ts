@@ -56,8 +56,8 @@ class TokenManager {
     localStorage.removeItem('refreshToken');
     localStorage.removeItem('accessTokeExpiredIn');
     localStorage.removeItem('refreshTokenExpiredIn');
-    
-    Router.push('/');
+
+    Router.push('/login')
   }
 
   async reissueToken({ refreshToken }: RefreshTokenType) {
@@ -69,8 +69,8 @@ class TokenManager {
           baseURL: process.env.NEXT_PUBLIC_SERVER_URL,
           withCredentials: true,
           headers: {
-            RefreshToken:
-              this.refreshToken && `Bearer ${encodeURI(refreshToken || '')}`,
+            refreshToken:
+              this.refreshToken && `Bearer ${refreshToken}`,
           },
         }
       );

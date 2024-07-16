@@ -17,13 +17,15 @@ const BookPage = () => {
   const [book, setBook] = useState<RecommendBookType[]>([]);
   const user = useSelector((state: RootState) => state.user);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const fetchBook = async () => {
     try {
       const { data } = await instance.get(`/recommend`, {
         params: {
           type: type,
         },
-      });
+      });    
+      
       setBook(data);
     } catch (error) {
       console.error(error);
@@ -36,8 +38,9 @@ const BookPage = () => {
   };
 
   useEffect(() => {
+    if(modal!=='')return;
     fetchBook();
-  }, [type]);
+  }, [type, modal, fetchBook]);
 
   return (
     <>
@@ -67,6 +70,7 @@ const BookPage = () => {
             book?.map((item) => (
               <RecommandItem
                 key={item.id}
+                id={item.id}
                 title={item.title}
                 author={item.author}
                 content={item.content}

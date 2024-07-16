@@ -1,12 +1,11 @@
 import styled from '@emotion/styled';
 
 export const Wrapper = styled.div`
-  width: 57rem;
+  width: 60rem;
+  height: 80vh;
   margin: 2.88rem auto 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   gap: 2rem;
   @media (max-width: 57rem) {
     width: 100%;
@@ -14,6 +13,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Header = styled.div`
+  padding: 0 1.5rem;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -42,10 +42,16 @@ export const SelectedTitle = styled.div<{ selected: boolean }>`
 `;
 
 export const RecommandList = styled.div`
+  padding: 1.25rem 1.5rem ;
   width: 100%;
+  height: auto;
   display: flex;
   flex-wrap: wrap;
-  gap: 2.75rem;
+  gap: 3rem;
+  overflow-x: scroll;
+  ::-webkit-scrollbar{
+    display: none;
+  }
   @media (max-width: 57rem) {
     flex-wrap: nowrap;
     flex-direction: column;

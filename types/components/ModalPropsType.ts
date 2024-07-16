@@ -1,7 +1,8 @@
-import { BookInfoType } from "./BookInfoType";
+import { BookInfoType, RecommendBookType } from "./BookInfoType";
 
 export interface ModalPropsType {
   item?: BookInfoType
+  editItem?: RecommendBookType
   type?: RecommendType
   onClose: () => void;
 }

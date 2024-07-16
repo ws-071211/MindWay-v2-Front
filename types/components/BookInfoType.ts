@@ -1,6 +1,6 @@
 export interface BookInfoType{
   id?: number
-  title?: string
+  title: string
   author?: string
   book_url?: string
 }

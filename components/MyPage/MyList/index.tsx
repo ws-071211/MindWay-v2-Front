@@ -29,7 +29,6 @@ const MyList = ({ onClose }: ModalPropsType) => {
     dispatch(setUserData(fetchUser.data));
     setUser(fetchUser.data);
     setBook(fetchBook.data);
-    console.log(fetchBook.data, fetchUser.data);
   }, []);
   return (
     <>

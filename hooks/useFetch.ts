@@ -30,7 +30,6 @@ const useFetch = ({
         if (successEvent) successEvent();
 
       } catch (error) {
-        console.log(error);
         if (failureMessage)
           toast.error(failureMessage, { ...toastOption, icon: ErrorIcon });
       }

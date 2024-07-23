@@ -3,9 +3,10 @@ import * as S from './style';
 import RankingVerticalBar from '@/asset/svg/RankingVerticalBar';
 import RankingVerticalBarNone from '@/asset/svg/RankingVerticalBarNone';
 import { useEffect, useState } from 'react';
+import { RankType } from '@/types/components/RankType';
 
 const ReadinKing = () => {
-  const [rank, setRank] = useState([]);
+  const [rank, setRank] = useState<RankType[]>([]);
 
   const fetchEvent = async () => {
     try {
@@ -27,8 +28,8 @@ const ReadinKing = () => {
     <S.Container>
       <S.Title>이달의 독서왕</S.Title>
       <S.DayListcontainer>
-        {rank.map((user) => (
-          <S.DayList key={user.id}>
+        {rank.map((user, index) => (
+          <S.DayList key={index}>
             {user.accrue}권
             <RankingVerticalBar before={MaxAccrue} after={user.accrue} />
             {user.name}

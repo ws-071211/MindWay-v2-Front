@@ -1,14 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { MeatBallIcon, NoneBookIcon, SuccessIcon } from '@/asset';
+import { MeatBallIcon, NoneBookIcon } from '@/asset';
 import * as S from './style';
 import { useEffect, useState } from 'react';
 import IntroductionModal from '../IntroductionModal';
-import { instance } from '@/apis';
 import { BookInfoType, ModalPropsType, UserType } from '@/types';
 import { useDispatch } from 'react-redux';
 import { setUserData } from '@/store/user';
 import BookRequestItem from './BookRequestItem';
 import { useRouter } from 'next/router';
+import useFetch from '@/hooks/useFetch';
 
 const MyList = ({ onClose }: ModalPropsType) => {
   const [user, setUser] = useState<UserType>();
@@ -18,37 +18,19 @@ const MyList = ({ onClose }: ModalPropsType) => {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const fetchUser = async () => {
-    try {
-      const { data } = await instance.get(`/my`);
-      setUser(data);
-      dispatch(setUserData(data));
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const fetchBook = async () => {
-    try {
-      const { data } = await instance.get(`/my/book`);
-      setBook(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const logout = async () => {
-    try{
-      await instance.delete(`/auth`)
-    }catch (error){
-      
-    }
-  } 
+  const fetchUser = useFetch({ method: 'GET', url: '/my' });
+  const fetchBook = useFetch({ method: 'GET', url: '/my/book' });
+  const logout = useFetch({ method: 'DELETE', url: '/auth' });
 
   useEffect(() => {
-    fetchUser();
-    fetchBook();
-  }, [fetchUser]);
+    fetchUser.fetch();
+    fetchBook.fetch();
+
+    dispatch(setUserData(fetchUser.data));
+    setUser(fetchUser.data);
+    setBook(fetchBook.data);
+    console.log(fetchBook.data, fetchUser.data);
+  }, []);
   return (
     <>
       <S.Wrapper>
@@ -75,25 +57,30 @@ const MyList = ({ onClose }: ModalPropsType) => {
                     <S.ModalContour />
                   </>
                 )}
-                <S.LogoutText onClick={() => logout()}>로그아웃</S.LogoutText>
+                <S.LogoutText onClick={() => logout.fetch()}>
+                  로그아웃
+                </S.LogoutText>
               </S.ModalWrapper>
             )}
           </S.MeatBallIconContainer>
         </S.ProfileContainer>
         <S.ApplicantContainer>
           도서 신청 목록
-          {book?.length == 0 ? (
+          {book?.length === 0 ? (
             <S.BookContainer>
               <S.NoneBookContainer>
                 <NoneBookIcon />
                 <S.ApplicantText>
-                  신청한 도서가 없습니다. <span onClick={()=>router.push('/book')}>도서 신청하기</span>
+                  신청한 도서가 없습니다.{' '}
+                  <span onClick={() => router.push('/book')}>
+                    도서 신청하기
+                  </span>
                 </S.ApplicantText>
               </S.NoneBookContainer>
             </S.BookContainer>
           ) : (
             <S.BookRequestList>
-              {book.map((item) => (
+              {book?.map((item) => (
                 <BookRequestItem
                   key={item.id}
                   id={item.id}

@@ -1,36 +1,46 @@
+import { instance } from '@/apis';
 import * as S from './style';
 import RankingVerticalBar from '@/asset/svg/RankingVerticalBar';
+import RankingVerticalBarNone from '@/asset/svg/RankingVerticalBarNone';
+import { useEffect, useState } from 'react';
+import { RankType } from '@/types/components/RankType';
 
 const ReadinKing = () => {
-  const dayList = [
-    { name: '한재형', NumberOfBooks: 30 },
-    { name: '용재형', NumberOfBooks: 20 },
-    { name: '류재형', NumberOfBooks: 10 },
-  ];
+  const [rank, setRank] = useState<RankType[]>([]);
 
-  let MaxNumberOfBooks = 0;
-  dayList.forEach(({ NumberOfBooks }) => {
-    if (NumberOfBooks > MaxNumberOfBooks) {
-      MaxNumberOfBooks = NumberOfBooks;
+  const fetchEvent = async () => {
+    try {
+      const { data } = await instance.get(`/rank`);
+      console.log(data);
+      setRank(data);
+    } catch (error) {
+      setRank([]);
     }
-  });
+  };
+
+  useEffect(() => {
+    fetchEvent();
+  }, []);
+
+  const MaxAccrue = Math.max(...rank.map((user) => user.accrue), 0);
 
   return (
     <S.Container>
       <S.Title>이달의 독서왕</S.Title>
       <S.DayListcontainer>
-        {dayList.map((yoil, index) => (
+        {rank.map((user, index) => (
           <S.DayList key={index}>
-            <S.DayList>
-              {yoil.NumberOfBooks}권
-              <RankingVerticalBar
-                before={MaxNumberOfBooks}
-                after={yoil.NumberOfBooks}
-              />
-            </S.DayList>
-            {yoil.name}
+            {user.accrue}권
+            <RankingVerticalBar before={MaxAccrue} after={user.accrue} />
+            {user.name}
           </S.DayList>
         ))}
+        {rank.length < 3 &&
+          Array.from({ length: 3 - rank.length }).map((_, index) => (
+            <S.DayList key={`none-${index}`}>
+              <RankingVerticalBarNone />
+            </S.DayList>
+          ))}
       </S.DayListcontainer>
     </S.Container>
   );

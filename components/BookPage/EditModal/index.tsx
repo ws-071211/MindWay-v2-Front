@@ -1,5 +1,5 @@
 import { Portal } from '@/components';
-import { ModalPropsType, RecommendType } from '@/types';
+import { ModalPropsType } from '@/types';
 import * as S from './style';
 import Xmark from '@/asset/svg/Xmark';
 import Input from '@/components/common/Input';

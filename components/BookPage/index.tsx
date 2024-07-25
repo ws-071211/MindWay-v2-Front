@@ -3,12 +3,12 @@ import * as S from './style';
 import { useEffect, useState } from 'react';
 import RecommandItem from './RecommandItem';
 import { RecommendBookType, RecommendType } from '@/types';
-import { instance } from '@/apis';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
 import RecommendModal from './RecommendModal';
 import AlertModal from './AlertModal';
 import ApplicantModal from './ApplicantModal';
+import useFetch from '@/hooks/useFetch';
 
 const BookPage = () => {
   const [selected, setSelected] = useState<boolean>(true);
@@ -17,20 +17,11 @@ const BookPage = () => {
   const [book, setBook] = useState<RecommendBookType[]>([]);
   const user = useSelector((state: RootState) => state.user);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const fetchBook = async () => {
-    try {
-      const { data } = await instance.get(`/recommend`, {
-        params: {
-          type: type,
-        },
-      });    
-      
-      setBook(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  const { fetch, data } = useFetch<RecommendBookType[]>({
+    url: `/recommend?type=${type}`,
+    method: 'GET',
+    successEvent: (data) => setBook(data),
+  });
 
   const changeType = () => {
     setSelected(!selected);
@@ -38,10 +29,14 @@ const BookPage = () => {
   };
 
   useEffect(() => {
-    if(modal!=='')return;
-    fetchBook();
-  }, [type, modal, fetchBook]);
+    if (data) {
+      setBook(data);
+    }
+  }, [data]);
 
+  useEffect(()=>{
+    fetch();
+  },[type, modal])
   return (
     <>
       <S.Wrapper>
@@ -60,27 +55,30 @@ const BookPage = () => {
         </S.Header>
         <S.RecommandList>
           {user.authority !== 'ROLE_STUDENT' && (
-            <S.AddApplicantButton onClick={()=>setModal('Recommend')}>
+            <S.AddApplicantButton onClick={() => setModal('Recommend')}>
               <S.PlusContainer>
                 <PlusIcon color='#7EAF72' />
               </S.PlusContainer>
             </S.AddApplicantButton>
           )}
-          {
-            book?.map((item) => (
-              <RecommandItem
-                key={item.id}
-                id={item.id}
-                title={item.title}
-                author={item.author}
-                content={item.content}
-              />
-            ))}
+          {book?.map((item) => (
+            <RecommandItem
+              key={item.id}
+              id={item.id}
+              title={item.title}
+              author={item.author}
+              content={item.content}
+            />
+          ))}
         </S.RecommandList>
       </S.Wrapper>
-      {modal === 'Alert' && <AlertModal onClose={() => setModal('Applicant')} />}
+      {modal === 'Alert' && (
+        <AlertModal onClose={() => setModal('Applicant')} />
+      )}
       {modal === 'Applicant' && <ApplicantModal onClose={() => setModal('')} />}
-      {modal === 'Recommend' && <RecommendModal onClose={() => setModal('')} type={type}/>}
+      {modal === 'Recommend' && (
+        <RecommendModal onClose={() => setModal('')} type={type} />
+      )}
     </>
   );
 };

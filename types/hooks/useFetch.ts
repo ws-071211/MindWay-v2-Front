@@ -1,9 +1,9 @@
 import { Method } from 'axios';
 
-interface fetchType {
+interface fetchType<T> {
   url: string;
   method: Method;
-  successEvent?: () => void;
+  successEvent?: (data?:T) => void;
   successMessage?: string;
   failureMessage?: string;
 }

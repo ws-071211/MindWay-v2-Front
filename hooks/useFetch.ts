@@ -5,14 +5,14 @@ import fetchType from '@/types/hooks/useFetch';
 import { useCallback, useState } from 'react';
 import { toast } from 'react-toastify';
 
-const useFetch = ({
+const useFetch = <T>({
   method,
   url,
   failureMessage,
   successEvent,
   successMessage,
-}: fetchType) => {
-  const [data, setData] = useState();
+}: fetchType<T>) => {
+  const [data, setData] = useState<T>();
 
   const fetch = useCallback(
     async (body?: any) => {
@@ -28,7 +28,6 @@ const useFetch = ({
           toast.success(successMessage, { ...toastOption, icon: SuccessIcon });
 
         if (successEvent) successEvent();
-
       } catch (error) {
         if (failureMessage)
           toast.error(failureMessage, { ...toastOption, icon: ErrorIcon });

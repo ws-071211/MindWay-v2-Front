@@ -9,16 +9,16 @@ const Portal = ({ children, onClose }: PortalProps) => {
   const portal = document.getElementById('modal');
   if (!portal) throw new Error('not found modal');
 
-  if (typeof window === 'undefined') return <></>;
-
+  
   const onClick = (e: MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
   };
-
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+  
   useEffect(() => {
     setMounted(true);
   }, []);
+  
+  if (typeof window === 'undefined') return <></>;
 
   return mounted ? (
     ReactDOM.createPortal(

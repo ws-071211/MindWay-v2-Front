@@ -4,32 +4,34 @@ import * as S from './style';
 import { useEffect, useState } from 'react';
 import IntroductionModal from '../IntroductionModal';
 import { BookInfoType, ModalPropsType, UserType } from '@/types';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setUserData } from '@/store/user';
 import BookRequestItem from './BookRequestItem';
 import { useRouter } from 'next/router';
 import useFetch from '@/hooks/useFetch';
+import { RootState } from '@/store';
 
 const MyList = ({ onClose }: ModalPropsType) => {
-  const [user, setUser] = useState<UserType>();
+  const user = useSelector((state: RootState) => state.user);
   const [book, setBook] = useState<BookInfoType[]>([]);
   const [toggleModal, setToggleModal] = useState<boolean>(false);
   const [toggleIntro, setToggleIntro] = useState<boolean>(false);
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const fetchUser = useFetch({ method: 'GET', url: '/my' });
-  const fetchBook = useFetch({ method: 'GET', url: '/my/book' });
+  const fetchUser = useFetch<UserType>({ method: 'GET', url: '/my' });
+  const fetchBook = useFetch<BookInfoType[]>({ method: 'GET', url: '/my/book' });
   const logout = useFetch({ method: 'DELETE', url: '/auth' });
 
   useEffect(() => {
-    fetchUser.fetch();
-    fetchBook.fetch();
-
     dispatch(setUserData(fetchUser.data));
-    setUser(fetchUser.data);
     setBook(fetchBook.data);
-  }, []);
+  }, [fetchBook.data,fetchUser.data]);
+
+  useEffect(()=>{
+    fetchBook.fetch();
+    fetchUser.fetch();
+  },[])
   return (
     <>
       <S.Wrapper>
@@ -71,7 +73,7 @@ const MyList = ({ onClose }: ModalPropsType) => {
                 <NoneBookIcon />
                 <S.ApplicantText>
                   신청한 도서가 없습니다.{' '}
-                  <span onClick={() => router.push('/book')}>
+                  <span role={'link'} onClick={() => router.push('/book')}>
                     도서 신청하기
                   </span>
                 </S.ApplicantText>

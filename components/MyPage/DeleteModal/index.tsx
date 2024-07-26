@@ -1,26 +1,19 @@
 import { Portal } from '@/components';
 import { ModalPropsType } from '@/types';
 import * as S from './style';
-import { instance } from '@/apis';
-import { toast } from 'react-toastify';
-import toastOption from '@/lib/toastOption';
-import { ErrorIcon, SuccessIcon } from '@/asset';
+import useFetch from '@/hooks/useFetch';
 
 const DeleteModal = ({ item, onClose }: ModalPropsType) => {
-  const DeleteBook = async () => {
-    try {
-      await instance.delete(`/order/${item.id}`);
-      toast.success('신청 도서 삭제가 완료되었어요!', {
-        ...toastOption,
-        icon: <SuccessIcon />,
-      });
-      onClose();
-    } catch (error) {
-      toast.error('신청 도서 삭제가 실패했어요!', {
-        ...toastOption,
-        icon: <ErrorIcon />,
-      });
-    }
+  const { fetch } = useFetch({
+    url: `/order/${item.id}`,
+    method: 'DELETE',
+    successMessage: '신청 도서 삭제가 완료되었어요!',
+    failureMessage: '신청 도서 삭제가 실패했어요!',
+  });
+
+  const onConfirm = async () => {
+    await fetch();
+    onClose();
   };
 
   return (
@@ -36,7 +29,7 @@ const DeleteModal = ({ item, onClose }: ModalPropsType) => {
         </S.TextContainer>
         <S.ButtonContainer>
           <S.CancleButton onClick={onClose}>취소</S.CancleButton>
-          <S.CheckButton onClick={DeleteBook}>확인</S.CheckButton>
+          <S.CheckButton onClick={onConfirm}>확인</S.CheckButton>
         </S.ButtonContainer>
       </S.Wrapper>
     </Portal>

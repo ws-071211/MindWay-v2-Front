@@ -7,9 +7,14 @@ const DeleteModal = ({ editItem, onClose }: ModalPropsType) => {
   const { fetch } = useFetch({
     url: `/recommend/${editItem.id}`,
     method: 'DELETE',
-    successMessage: '신청 도서 삭제가 완료되었어요!',
-    failureMessage: '신청 도서 삭제가 실패했어요.'
+    successMessage: '추천 도서 삭제가 완료되었어요!',
+    failureMessage: '추천 도서 삭제가 실패했어요.'
   });
+
+  const onConfirm = async() => {
+    await fetch();
+    onClose();
+  }
 
   return (
     <Portal onClose={onClose}>
@@ -24,7 +29,7 @@ const DeleteModal = ({ editItem, onClose }: ModalPropsType) => {
         </S.TextContainer>
         <S.ButtonContainer>
           <S.CancleButton onClick={onClose}>취소</S.CancleButton>
-          <S.CheckButton onClick={fetch}>확인</S.CheckButton>
+          <S.CheckButton onClick={onConfirm}>확인</S.CheckButton>
         </S.ButtonContainer>
       </S.Wrapper>
     </Portal>

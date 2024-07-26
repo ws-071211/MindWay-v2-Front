@@ -5,10 +5,7 @@ import Xmark from '@/asset/svg/Xmark';
 import Input from '@/components/common/Input';
 import { useForm } from 'react-hook-form';
 import { RecommendBookType } from '@/types/components/BookInfoType';
-import { instance } from '@/apis';
-import { toast } from 'react-toastify';
-import toastOption from '@/lib/toastOption';
-import { ErrorIcon, SuccessIcon } from '@/asset';
+import useFetch from '@/hooks/useFetch';
 
 const EditModal = ({ onClose, editItem }: ModalPropsType) => {
   const {
@@ -23,31 +20,25 @@ const EditModal = ({ onClose, editItem }: ModalPropsType) => {
     },
   });
 
-  const EditBook = async (data: RecommendBookType) => {
-    try {
-      await instance.patch(`/recommend/${editItem.id}`, {
-        title: data.title,
-        content: data.content,
-        author: data.author,
-      });
-      toast.success('추천 도서 등록이 완료되었어요!', {
-        ...toastOption,
-        icon: <SuccessIcon />,
-      });
-      console.log(data);
-      onClose();
-    } catch (error) {
-      console.log(error);
-      toast.error('추천 도서 등록에 실패했어요', {
-        ...toastOption,
-        icon: <ErrorIcon />,
-      });
-    }
+  const { fetch } = useFetch<RecommendBookType>({
+    url: `/recommend/${editItem.id}`,
+    method: 'PATCH',
+    successMessage: '추천 도서 등록이 완료되었어요!',
+    failureMessage: '추천 도서 등록에 실패했어요',
+  });
+
+  const onConfirm = async (data: RecommendBookType) => {
+    await fetch({
+      title: data.title,
+      content: data.content,
+      author: data.author,
+    });
+    onClose();
   };
 
   return (
     <Portal onClose={onClose}>
-      <S.Wrapper onSubmit={handleSubmit(EditBook)}>
+      <S.Wrapper onSubmit={handleSubmit(onConfirm)}>
         <S.ContentContainer>
           <S.HeaderContainer>
             <S.TitleText>추천 도서 수정</S.TitleText>

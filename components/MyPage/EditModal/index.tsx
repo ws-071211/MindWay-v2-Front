@@ -5,10 +5,7 @@ import Xmark from '@/asset/svg/Xmark';
 import Input from '@/components/common/Input';
 import { useForm } from 'react-hook-form';
 import { BookInfoType } from '@/types/components/BookInfoType';
-import { instance } from '@/apis';
-import { toast } from 'react-toastify';
-import toastOption from '@/lib/toastOption';
-import { ErrorIcon, SuccessIcon } from '@/asset';
+import useFetch from '@/hooks/useFetch';
 
 const EditModal = ({ item, onClose }: ModalPropsType) => {
   const {
@@ -23,30 +20,25 @@ const EditModal = ({ item, onClose }: ModalPropsType) => {
     },
   });
 
-  const EditBook = async (data: BookInfoType) => {
-    try {
-      await instance.patch(`/order/${item.id}`, {
-        title: data.title,
-        author: data.author,
-        book_url: data.book_url,
-      });
-      toast.success('도서 수정이 성공했어요!', {
-        ...toastOption,
-        icon: <SuccessIcon />,
-      });
-      onClose();
-    } catch (error) {
-      console.log(error);
-      toast.error('도서 수정에 실패했어요!', {
-        ...toastOption,
-        icon: <ErrorIcon />,
-      });
-    }
+  const { fetch } = useFetch<BookInfoType>({
+    url: `/order/${item.id}`,
+    method: 'PATCH',
+    successMessage: '도서 수정이 성공했어요!',
+    failureMessage: '도서 수정에 실패했어요!',
+  });
+
+  const onConfirm = async (data: BookInfoType) => {
+    await fetch({
+      title: data.title,
+      author: data.author,
+      book_url: data.book_url
+    });
+    onClose();
   };
 
   return (
     <Portal onClose={onClose}>
-      <S.Wrapper onSubmit={handleSubmit(EditBook)}>
+      <S.Wrapper onSubmit={handleSubmit(onConfirm)}>
         <S.ContentContainer>
           <S.HeaderContainer>
             <S.TitleText>도서 수정</S.TitleText>

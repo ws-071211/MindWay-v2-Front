@@ -3,22 +3,23 @@ import * as S from './style';
 import { BookInfoType, ModalPropsType } from '@/types';
 import ApplicantItem from './ApplicantItem';
 import { useEffect, useState } from 'react';
-import { instance } from '@/apis';
+import useFetch from '@/hooks/useFetch';
 
 const ApplicantList = ({ onClose }: ModalPropsType) => {
   const [list, setList] = useState<BookInfoType[]>([]);
 
-  const fetchList = async () => {
-    try {
-      const { data } = await instance.get(`/order`);
-      setList(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const { fetch, data } = useFetch<BookInfoType[]>({
+    url: `/order`,
+    method: 'GET',
+    successEvent: (data) => setList(data),
+  });
+
+  useEffect(()=>{
+    setList(data);
+  },[data])
 
   useEffect(() => {
-    fetchList();
+    fetch();
   }, []);
   return (
     <S.Wrapper>
@@ -30,7 +31,7 @@ const ApplicantList = ({ onClose }: ModalPropsType) => {
         <S.Empty />
       </S.Header>
       <S.BookRequestList>
-        {list.map((item) => (
+        {list?.map((item) => (
           <ApplicantItem
             key={item.id}
             id={item.id}

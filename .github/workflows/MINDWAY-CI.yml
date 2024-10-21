@@ -1,0 +1,75 @@
+name: Mindway CI
+
+on:
+  pull_request:
+    branches: ['*']
+
+jobs:
+  CI:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+
+        uses: actions/setup-node@v2
+
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+
+        run: yarn install
+
+      - name: Run Next.js build
+
+        run: yarn build
+
+      - name: Success Discord Notification
+
+        uses: sarisia/actions-status-discord@v1
+
+        if: ${{ success() }}
+
+        with:
+          title: 'Mindway-CI Successful!!'
+
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+
+          status: ${{ job.status }}
+
+          description: 'CI success'
+
+          content: "<@${{ secrets.DISCORD_ID1 }}> <@${{ secrets.DISCORD_ID2 }}>\n pr 확인 부탁드립니다!!"
+
+          color: 4CAF50
+
+          username: Mindway-CI Bot
+
+          url: https://github.com/Team-MindWay/MindWay-v2-Front
+
+      - name: Failed Discord Notification
+
+        uses: sarisia/actions-status-discord@v1
+
+        if: ${{ failure() }}
+
+        with:
+          title: 'Mindway-CI Failure'
+
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+
+          status: ${{ job.status }}
+
+          description: 'CI Failure'
+
+          content: '실패!'
+
+          color: e74c3c
+
+          username: Mindway-CI Bot
+
+          url: https://github.com/Team-MindWay/MindWay-v2-Front
